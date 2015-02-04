@@ -1,6 +1,3 @@
-import java.util.*
-import java.lang.*
-
 public class QueueTimer {
 
 	private Queue<Integer> queue;

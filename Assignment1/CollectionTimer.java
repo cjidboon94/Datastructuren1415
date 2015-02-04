@@ -2,18 +2,39 @@ import java.lang.*
 import java.util.*
 
 public abstract class CollectionTimer {
-    public static final int[] DEFAULT_MUTATIONS
-    private Random elemGen
+    public static final int[] DEFAULT_MUTATIONS = { 10000, -10000};
     
-    CollectionTimer(){};
-    CollectionTimer(long elemGenSeed){};
+    //Abstract statements for the QueueTimer and ListTimer classes
+    public abstract void addElement(Integer elem);
+    public abstract void removeElement();
+    public abstract int getSize();
+    public abstract boolean isEmpty();
+
+    private Random elemGen;
     
-    public abstract void addElement(Integer elem)
-    public abstract void removeElement()
-    public abstract int getSize()
-    public abstract boolean isEmpty()
-    public void insert(int amount)
-    public boolean extract(int amount)
-    public long time()
-    public long time(int[] mutations)
+    CollectionTimer(){
+        elemgen = Random(0);
+    }
+    
+    CollectionTimer(long elemGenSeed){
+        elemgen = Random(elemGenSeed);
+    }
+    
+
+    
+    public void insert(int amount){
+        
+    }
+    
+    public boolean extract(int amount){
+        
+    }
+        
+    public long time(){
+        
+    }
+    
+    public long time(int[] mutations){
+        
+    }
 }
