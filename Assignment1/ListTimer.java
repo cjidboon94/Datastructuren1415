@@ -8,11 +8,21 @@ public class ListTimer extends Collectiontimer {
     public ListTimer(List<Integer> list, long elemGenSeed){ };
     public ListTimer(List<Integer>, Long elemGenSeed){ };
     
-    public void addElement(Integer elem){}
+    public void addElement(Integer elem){
+            list.add(elem);
+    }
     
-    public void removeElement(){}
+    public void removeElement(){
+        try{
+            list.remove(0);
+        }catch(UnsupportedOperationException)
+    }
     
-    public int getSize(){}
+    public int getSize(){
+        return list.size();
+    }
     
-    public boolean isEmpty(){}
+    public boolean isEmpty(){
+        return list.isEmpty();
+    }
 }
