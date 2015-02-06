@@ -1,7 +1,7 @@
 import java.lang.*
 import java.util.*
 
-public abstract class CollectionTimer {
+public abstract class CollectionTimer extends Assignment1 {
     public static final int[] DEFAULT_MUTATIONS = { 10000, -10000};
     
     //Abstract statements for the QueueTimer and ListTimer classes
@@ -31,10 +31,10 @@ public abstract class CollectionTimer {
     }
         
     public long time(){
-        
+        //return elapsed time in milliseconds
     }
     
     public long time(int[] mutations){
-        
+        //return elapsed time in milliseconds
     }
 }
