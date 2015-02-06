@@ -23,7 +23,9 @@ public abstract class CollectionTimer extends Assignment1 {
 
     
     public void insert(int amount){
-        
+        for(){
+            
+        }
     }
     
     public boolean extract(int amount){
