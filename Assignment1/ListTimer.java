@@ -1,4 +1,8 @@
 public class ListTimer extends Collectiontimer {
+    /* Class that times the performance of a data structure that 
+     * implements the List interface. 
+     */
+    
     
     private List<Integer> list;
     /* The list that will be benchmarked. */

@@ -4,7 +4,11 @@ import java.util.*
 
 
 public abstract class CollectionTimer extends Object {
-    
+    /*  Abstract class that is to be extended by classes that wish 
+     * to time the performance of some data structure. 
+     */
+
+
     public static final int[] DEFAULT_MUTATIONS = { 10000, -10000};
     /* Default sequence of inserts and deletions that is used to time the
      * data structure: 10000 insertions followed by their removal.

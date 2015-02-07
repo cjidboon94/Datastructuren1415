@@ -1,5 +1,9 @@
-public class QueueTimer {
-
+public class QueueTimer extends CollectionTimer {
+    /* Class that times the performance of a data structure 
+     * that implements the Queue interface. 
+     */
+    
+    
     private Queue<Integer> queue;
     /* The queue that will be benchmarked */
     
@@ -22,28 +26,31 @@ public class QueueTimer {
     
 	public void addElement(int elem) {
     /* Adds an Integer object to the queue.*/
-		queue.add(elem);
+		
+        queue.add(elem);
 	}
 
 	public void removeElement {
-   	
     /* Removes an object from the queue. */
-   		try {
+   		
+        try {
 			queue.remove();
 		} 
-		catch (java.util.NoSuchElementException) {
+		
+        catch (java.util.NoSuchElementException) {
 		}
 	}
 
 	public int getSize {
     /* Returns the size of the queue. */
-		return queue.size();
-
+		
+        return queue.size();
 	}
 
 	public boolean isEmpty {
     /* Tells whether the queue is empty. */
-		return queue.isEmpty();
+		
+        return queue.isEmpty();
 	}
 
 }

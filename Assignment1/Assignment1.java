@@ -2,7 +2,10 @@ import java.lang.*
 import java.util.*
 
 public class Assignment1 extends Object {
-    
+    /* Times the mutations (population and depopulation) of various 
+     * data structures provided by the Java standard library that either 
+     * implement the List or Queue interface.
+     */
 
     
 	ArrayList<List<Integer>> lists;
@@ -17,7 +20,7 @@ public class Assignment1 extends Object {
      */ 
     
     public Assignment1(){
-        /* Default constructor */
+    /* Default constructor */
         lists = new ArrayList<List<Integer>>();
         lists.add( new ArrayList<Integer>());
         lists.add( new LinkedList<Integer>());
