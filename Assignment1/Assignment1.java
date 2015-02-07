@@ -2,17 +2,17 @@ import java.lang.*;
 import java.util.*;
 
 public class Assignment1 extends Object {
-    /* Times the mutations (population and depopulation) of various 
-     * data structures provided by the Java standard library that either 
-     * implement the List or Queue interface.
-     */
+  /* Times the mutations (population and depopulation) of various 
+   * data structures provided by the Java standard library that either 
+   * implement the List or Queue interface.
+   */
 
     
     private ArrayList<List<Integer>> lists;
     /* List of instances of datastructures that implement the List interface
      * that are to be benchmarked.
      */
-        
+     
     private ArrayList<Queue<Integer>> queues;
     /* List of instances of datastructures that implement the Queue interface
      * that are to be benchmarked.
@@ -78,9 +78,7 @@ public class Assignment1 extends Object {
             }
         }
     }
-    
-    
-    
+     
 	public void benchmark() {
     /* Performs benchmark with random seed 0 to populate the data structures
      * and with mutations as in CollectionTimer.DEFAULT_MUTATIONS.
