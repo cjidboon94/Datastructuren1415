@@ -42,10 +42,10 @@ public class QueueTimer extends CollectionTimer {
 	public void removeElement() {
     /* Removes an object from the queue. */
    		
-        if( getSize() == 0){
+		if( getSize() == 0){
 			throw new NoSuchElementException();
 		} 
-        queue.poll();
+      queue.poll();
 	}
 
 	public int getSize() {

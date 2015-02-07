@@ -57,7 +57,7 @@ public abstract class CollectionTimer extends Object {
         
         if( getSize() >= amount){
             for(int i = 0; i < amount; i ++){
-                removeElement();
+              removeElement();	
             }
             return true;
         }
@@ -78,7 +78,7 @@ public abstract class CollectionTimer extends Object {
             if(op > 0){
                 insert(op);
             } else {
-                extract(op);
+								extract(op);
             }
         }
         long stop = System.currentTimeMillis();
