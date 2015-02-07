@@ -9,19 +9,21 @@ public class QueueTimer extends CollectionTimer {
     
     public QueueTimer( Queue<Integer> queue){
     /* Constructor that creates a QueueTimer instance for the given queue */
-        return QueueTimer(queue, 0);
+        QueueTimer(queue, 0);
     }
     
     public QueueTimer( Queue<Integer> queue, long elemGenSeed){
     /* Constructor that creates a QueueTimer instance for the given queue
      * that will populate it with a data generated using the specified seed.
      */
+        super(
+     
     }
     public QueueTimer( Queue<Integer> queue, Long elemGenSeed){
     /*Constructor that creates a QueueTimer instance for the given queue
      *that will populate it with a data generated using the specified seed.
      */
-        return QueueTimer(queue, (long) elemGenSeed);
+        QueueTimer(queue, (long) elemGenSeed);
     }
     
 	public void addElement(int elem) {
@@ -33,12 +35,10 @@ public class QueueTimer extends CollectionTimer {
 	public void removeElement {
     /* Removes an object from the queue. */
    		
-        try {
-			queue.remove();
+        if( getSize() == 0)
+			throw new NoSuchElementException();
 		} 
-		
-        catch (java.util.NoSuchElementException) {
-		}
+        queue.poll();
 	}
 
 	public int getSize {

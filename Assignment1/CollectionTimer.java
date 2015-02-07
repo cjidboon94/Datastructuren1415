@@ -29,7 +29,6 @@ public abstract class CollectionTimer extends Object {
      * with a random object generator with the specified seed.
      */    
     
-    
         elemGen = new Random(elemGenSeed);
     }
     
@@ -55,19 +54,34 @@ public abstract class CollectionTimer extends Object {
     
     public boolean extract(int amount){
     /* Removes a specified number of objects from the data structure. */
-        for(int i = 0; i < amount; i ++){
-            removeElement();
+        
+        if( getSize() >= amount){
+            for(int i = 0; i < amount; i ++){
+                removeElement();
+            }
+            return true;
         }
+        return false;
     }
 
     public long time(){
     /* Times a sequence of operations on the underlying data structure. */
-        start =
+    
+        return time(DEFAULT_MUTATIONS);
     }
     
     public long time(int[] mutations){
     /*Times a specified sequence of operations on the underlying data structure.*/
     
-    
+        long time = System.currentTimeMillis();
+        for( op : mutations){
+            if(op > 0){
+                insert(op);
+            } else {
+                extract(op);
+            }
+        }
+        time -= System.currentTimeMillis();
+        return (time);
     }
 }

@@ -9,8 +9,9 @@ public class ListTimer extends Collectiontimer {
     
     public ListTimer(List<Integer> list){
     /* Constructor that creates a ListTimer instance for the given list. */
-    
-        return ListTimer(list, 0);
+        
+        super();
+        this.list = list;
     }
     
     public ListTimer(List<Integer> list, Long elemGenSeed){ 
@@ -18,7 +19,7 @@ public class ListTimer extends Collectiontimer {
      * that given list that will populate it with data generated 
      * using the specified seed. 
      */
-        return ListTimer(list, (long) elemGenSeed);
+        ListTimer(list, (long) elemGenSeed);
         
     }
     public ListTimer(List<Integer> list, long elemGenSeed){ 
@@ -26,7 +27,7 @@ public class ListTimer extends Collectiontimer {
      * that given list that will populate it with data generated 
      * using the specified seed.
      */
-        
+        super(elemGenSeed);
         this.list = list;
     }
     
@@ -39,12 +40,14 @@ public class ListTimer extends Collectiontimer {
     public void removeElement(){
     /*Removes an object from the list*/
         
-        if(list.size() == 0){
+        if(isEmpty()){
             throw new IndexOutOfBoundsException();
         }
         try{
             list.remove(0);
-        }catch(UnsupportedOperationException)
+        } catch (UnsupportedOperationException e){
+            throw e;
+        }
      }
     
     public int getSize(){
