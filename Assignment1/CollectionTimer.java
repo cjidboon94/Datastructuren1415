@@ -1,5 +1,5 @@
-import java.lang.*
-import java.util.*
+import java.lang.*;
+import java.util.*;
 
 
 
@@ -73,15 +73,15 @@ public abstract class CollectionTimer extends Object {
     public long time(int[] mutations){
     /*Times a specified sequence of operations on the underlying data structure.*/
     
-        long time = System.currentTimeMillis();
-        for( op : mutations){
+        long start = System.currentTimeMillis();
+        for(int op : mutations){
             if(op > 0){
                 insert(op);
             } else {
                 extract(op);
             }
         }
-        time -= System.currentTimeMillis();
-        return (time);
+        long stop = System.currentTimeMillis();
+        return (stop-start);
     }
 }

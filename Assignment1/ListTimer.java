@@ -1,8 +1,10 @@
+import java.lang.*;
+import java.util.*;
+
 public class ListTimer extends CollectionTimer {
     /* Class that times the performance of a data structure that 
      * implements the List interface. 
      */
-    
     
     private List<Integer> list;
     /* The list that will be benchmarked. */
@@ -19,14 +21,16 @@ public class ListTimer extends CollectionTimer {
      * that given list that will populate it with data generated 
      * using the specified seed. 
      */
-        ListTimer(list, (long) elemGenSeed);
         
+        this(list, (long) elemGenSeed);
     }
+    
     public ListTimer(List<Integer> list, long elemGenSeed){ 
     /* Constructor that creates a ListTimer instance for 
      * that given list that will populate it with data generated 
      * using the specified seed.
      */
+        
         super(elemGenSeed);
         this.list = list;
     }
