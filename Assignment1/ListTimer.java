@@ -1,4 +1,4 @@
-public class ListTimer extends Collectiontimer {
+public class ListTimer extends CollectionTimer {
     /* Class that times the performance of a data structure that 
      * implements the List interface. 
      */
