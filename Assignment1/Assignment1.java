@@ -72,6 +72,7 @@ public class Assignment1 extends Object {
     /* Main method of the program. */
         Assignment1 init = new Assignment1();
         int[] mutations;
+        String usage = "Usage: java Assignment1 [-s seed] [mutations]";
         if(args.length == 0) {
             init.benchmark();
         }
@@ -81,7 +82,7 @@ public class Assignment1 extends Object {
                 /* Check for a seed  */                      
                 
                 if(args.length == 1) {
-                    errorExit("No seed provided\n Usage: java Assignment1 [-s seed] [mutations]");
+                    errorExit("No seed provided\n" + usage);
                 }
                 try {
                     long seed = Long.parseLong(args[1]);
@@ -104,8 +105,10 @@ public class Assignment1 extends Object {
                 catch(NumberFormatException e) {
                     errorExit("NumberFormatException: " + e.getMessage());
                 }
-            }
-            else {
+            } else if(args[0].equals("-h")) {
+                /* Print usage if asked for help */
+                errorExit(usage);  
+            } else {
                 /* If no seed, just parse mutations */
                 mutations = new int[args.length];
                 int i = 0;
