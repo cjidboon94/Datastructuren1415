@@ -1,5 +1,5 @@
 /* Assignment 1 - Datastructuren
- * Authors: Cornelis Boon - 10561145, Tim Groot - %NUMMER%
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: CollectionTimer.java
@@ -84,8 +84,9 @@ public abstract class CollectionTimer extends Object {
             if(op > 0) {
                 insert(op);
             } else {
-								boolean succes = extract(op);
-								if(! succes) {
+								boolean sufficient = extract(op);
+								/* Flag to check if sufficient elements were present */
+								if(! sufficient) {
 									return -1;
 								}
             }

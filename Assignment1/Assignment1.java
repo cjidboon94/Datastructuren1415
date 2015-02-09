@@ -1,5 +1,5 @@
 /* Assignment 1 - Datastructuren
- * Authors: Cornelis Boon - 10561145, Tim Groot - %NUMMER%
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: Assignment1.java
@@ -15,6 +15,24 @@
  * the UNIX epoch before and after the required operations have taken place. 
  * Hence the accuracy of the benchmarks is platform dependent and may be 
  * influenced by other processes running on the host machine.
+ */
+
+
+/* Question: How will the implementation of removeElement() affect 
+ * the performance of different ADT's? 
+ * 
+ * Answer: Since removing elements from an array can be 
+ * implemented in different ways, this method affects 
+ * the performance of the data structures. 
+ * 
+ * In our implementation, we simply pop the first element from the array. 
+ * This means very little for the performance of, for example, lists and stacks. 
+ * If we decide to remove the n-th  element from the same array, lists and queues, 
+ * for example, could differ a lot in performance. 
+ * 
+ * The lists would take longer to process here, since the list iterates 
+ * all the way up to that n-th element. It all depends on the properties
+ * of the abstract data structures and how well they handle aspects or removal.
  */
 
 import java.lang.*;
@@ -57,8 +75,11 @@ public class Assignment1 extends Object {
         if(args.length == 0) {
             init.benchmark();
         }
-        else if(args.length >= 1) {
+        else if(args.length >= 1) { 
+            /* If any arguments, parse arguments */
             if(args[0].equals("-s")) {
+                /* Check for a seed  */                      
+                
                 if(args.length == 1) {
                     errorExit("No seed provided");
                 }
@@ -68,6 +89,7 @@ public class Assignment1 extends Object {
                         init.benchmark(seed);
                     }
                     else {
+                        /* Parse mutations */
                         mutations = new int[args.length-2];
                         String[] mutationcopy = new String[args.length-2];
                         System.arraycopy(args, 2, mutationcopy, 0, args.length-2);
@@ -84,6 +106,7 @@ public class Assignment1 extends Object {
                 }
             }
             else {
+                /* If no seed, just parse mutations */
                 mutations = new int[args.length];
                 int i = 0;
                 try {
@@ -124,7 +147,6 @@ public class Assignment1 extends Object {
         Assignment1 accessor = new Assignment1();
         for(List<Integer> list : accessor.lists) {
             ListTimer timer = new ListTimer(list, elemGenSeed);
-            
             System.out.println(list.getClass().getSimpleName() + ": " 
                                 + timer.time() + "ms");
         }

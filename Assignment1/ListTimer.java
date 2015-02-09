@@ -1,11 +1,10 @@
 /* Assignment 1 - Datastructuren
- * Authors: Cornelis Boon - 10561145, Tim Groot - %NUMMER%
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: ListTimer.java
  * 
- * Class description: 
- * Class that times the performance of a data structure that 
+ * Class description: Class that times the performance of a data structure that 
  * implements the List interface. 
  */
 
