@@ -3,7 +3,8 @@
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: QueueTimer.java
- * Class description:
+ * Class description: Class that times the performance of a data structure 
+ * that implements the Queue interface. 
  * 
  */
 
@@ -11,9 +12,6 @@ import java.lang.*;
 import java.util.*;
 
 public class QueueTimer extends CollectionTimer {
-/* Class that times the performance of a data structure 
- * that implements the Queue interface. 
- */
     
     private Queue<Integer> queue;
     /* The queue that will be benchmarked */
@@ -47,10 +45,10 @@ public class QueueTimer extends CollectionTimer {
 
     public void removeElement() {
     /* Removes an object from the queue. */
-    	if( getSize() == 0){
+    	if( getSize() == 0) {
     		throw new NoSuchElementException();
     	} 
-        queue.poll();
+      queue.poll();
     }
 
     public int getSize() {

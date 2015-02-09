@@ -3,18 +3,17 @@
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: ListTimer.java
- * Class description:
  * 
+ * Class description: 
+ * Class that times the performance of a data structure that 
+ * implements the List interface. 
  */
 
 import java.lang.*;
 import java.util.*;
 
 public class ListTimer extends CollectionTimer {
-  /* Class that times the performance of a data structure that 
-   * implements the List interface. 
-   */
-    
+
     private List<Integer> list;
     /* The list that will be benchmarked. */
 

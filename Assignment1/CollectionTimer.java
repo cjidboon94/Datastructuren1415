@@ -3,8 +3,12 @@
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: CollectionTimer.java
- * Class description: 
  * 
+ * Class description: Abstract class that is to be extended by classes 
+ * that wish to time the performance of some data structure. 
+ * Contrary to what the name implies, it is not enforced that 
+ * the data structures that are timed implement the Collection interface. 
+ * The data structure will need to support insertion of Integer objects.  
  */
 
 import java.lang.*;

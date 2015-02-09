@@ -3,8 +3,18 @@
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: Assignment1.java
- * Class description:
  * 
+ * Class description: Main class for this assignment.
+ * It times the mutations (population and depopulation) 
+ * of 4 implementations of the List interface:
+ * Stack, Vector, ArrayList and LinkedList;
+ * and 2 implementations of the Queue interface:
+ * LinkedList and PriorityQueue;
+ * 
+ * Timing takes place by  subtracting the number of milliseconds since 
+ * the UNIX epoch before and after the required operations have taken place. 
+ * Hence the accuracy of the benchmarks is platform dependent and may be 
+ * influenced by other processes running on the host machine.
  */
 
 import java.lang.*;
