@@ -64,10 +64,10 @@ public abstract class CollectionTimer extends Object {
     /* Removes a specified number of objects from the data structure. */
         try {
             for(int i = amount; i < 0; i ++) {
-									removeElement();
+				removeElement();
             }
 				} catch (RuntimeException e) {
-						return false;
+					return false;
 				} 
 				return true;
     }
@@ -84,11 +84,11 @@ public abstract class CollectionTimer extends Object {
             if(op > 0) {
                 insert(op);
             } else {
-								boolean sufficient = extract(op);
-								/* Flag to check if sufficient elements were present */
-								if(! sufficient) {
-									return -1;
-								}
+				boolean sufficient = extract(op);
+				/* Flag to check if sufficient elements were present */
+				if(! sufficient) {
+					return -1;
+				}
             }
         }
         long stop = System.currentTimeMillis();

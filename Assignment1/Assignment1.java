@@ -139,7 +139,7 @@ public class Assignment1 extends Object {
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue);
             System.out.println(queue.getClass().getSimpleName() + ": " 
-                                + timer.time() + "ms");
+            + timer.time() + "ms");
         }
     }   
     
@@ -151,12 +151,12 @@ public class Assignment1 extends Object {
         for(List<Integer> list : accessor.lists) {
             ListTimer timer = new ListTimer(list, elemGenSeed);
             System.out.println(list.getClass().getSimpleName() + ": " 
-                                + timer.time() + "ms");
+            + timer.time() + "ms");
         }
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue, elemGenSeed);
             System.out.println(queue.getClass().getSimpleName() + ": " 
-                                + timer.time() + "ms");
+            + timer.time() + "ms");
         }
     }
     
@@ -172,7 +172,7 @@ public class Assignment1 extends Object {
                 errorExit("Insufficient elements to extract");
             }
             System.out.println(list.getClass().getSimpleName() + ": " 
-                                + time + "ms");
+            + time + "ms");
         }
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue, elemGenSeed);
@@ -181,7 +181,7 @@ public class Assignment1 extends Object {
                 errorExit("Insufficient elements to extract");
             }    
             System.out.println(queue.getClass().getSimpleName() + ": " 
-                                + time + "ms");
+            + time + "ms");
         }
     }
     
