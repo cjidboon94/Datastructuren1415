@@ -1,5 +1,5 @@
 /* Assignment 1 - Datastructuren
- * Authors: Cornelis Boon , Tim Groot
+ * Authors: Cornelis Boon - 10561145, Tim Groot - %NUMMER%
  * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
  * Date: 09-02-2015
  * File: Assignment1.java
