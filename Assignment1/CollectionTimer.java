@@ -1,3 +1,12 @@
+/* Assignment 1 - Datastructuren
+ * Authors: Cornelis Boon , Tim Groot
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 09-02-2015
+ * File: CollectionTimer.java
+ * Class description:
+ * 
+ */
+
 import java.lang.*;
 import java.util.*;
 
@@ -49,13 +58,14 @@ public abstract class CollectionTimer extends Object {
 
     public boolean extract(int amount) {
     /* Removes a specified number of objects from the data structure. */
-        if( getSize() >= amount) {
-            for(int i = 0; i < amount; i ++) {
-                removeElement();
+        try {
+            for(int i = amount; i < 0; i ++) {
+									removeElement();
             }
-            return true;
-        }
-            return false;
+				} catch (RuntimeException e) {
+						return false;
+				} 
+				return true;
     }
 
     public long time() {
@@ -67,11 +77,13 @@ public abstract class CollectionTimer extends Object {
     /*Times a specified sequence of operations on the underlying data structure.*/
         long start = System.currentTimeMillis();
         for(int op : mutations) {
-            if(op > 0){
+            if(op > 0) {
                 insert(op);
-            } 
-            else {
-                extract(op);
+            } else {
+								boolean succes = extract(op);
+								if(! succes) {
+									return -1;
+								}
             }
         }
         long stop = System.currentTimeMillis();

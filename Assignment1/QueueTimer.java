@@ -1,6 +1,14 @@
+/* Assignment 1 - Datastructuren
+ * Authors: Cornelis Boon , Tim Groot
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 09-02-2015
+ * File: QueueTimer.java
+ * Class description:
+ * 
+ */
+
 import java.lang.*;
 import java.util.*;
-import java.lang.Integer;
 
 public class QueueTimer extends CollectionTimer {
 /* Class that times the performance of a data structure 
@@ -20,7 +28,7 @@ public class QueueTimer extends CollectionTimer {
     /*Constructor that creates a QueueTimer instance for the given queue
     *that will populate it with a data generated using the specified seed.
     */
-        this(queue, (long) elemGenSeed);
+        this(queue, elemGenSeed.longValue());
     }
 
     public QueueTimer( Queue<Integer> queue, long elemGenSeed) {

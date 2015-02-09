@@ -1,3 +1,12 @@
+/* Assignment 1 - Datastructuren
+ * Authors: Cornelis Boon , Tim Groot
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 09-02-2015
+ * File: ListTimer.java
+ * Class description:
+ * 
+ */
+
 import java.lang.*;
 import java.util.*;
 
@@ -20,7 +29,7 @@ public class ListTimer extends CollectionTimer {
     * that given list that will populate it with data generated 
     * using the specified seed. 
     */
-        this(list, (long) elemGenSeed);
+        this(list, elemGenSeed.longValue());
     }
 
     public ListTimer(List<Integer> list, long elemGenSeed) { 

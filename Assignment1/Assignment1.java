@@ -1,3 +1,12 @@
+/* Assignment 1 - Datastructuren
+ * Authors: Cornelis Boon , Tim Groot
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 09-02-2015
+ * File: Assignment1.java
+ * Class description:
+ * 
+ */
+
 import java.lang.*;
 import java.util.*;
 
@@ -88,20 +97,13 @@ public class Assignment1 extends Object {
         Assignment1 accessor = new Assignment1();
         for(List<Integer> list : accessor.lists) {
             ListTimer timer = new ListTimer(list);
-            try {
-                System.out.println(list.getClass().getName() + ": " + timer.time() + "ms");
-            } 
-            catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
-            }
+            System.out.println(list.getClass().getSimpleName() + ": " 
+                                + timer.time() + "ms");
         }
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue);
-            try {
-                System.out.println(queue.getClass().getName() + ": " + timer.time() + "ms");
-             } catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
-            }
+            System.out.println(queue.getClass().getSimpleName() + ": " 
+                                + timer.time() + "ms");
         }
     }   
     
@@ -112,21 +114,14 @@ public class Assignment1 extends Object {
         Assignment1 accessor = new Assignment1();
         for(List<Integer> list : accessor.lists) {
             ListTimer timer = new ListTimer(list, elemGenSeed);
-            try {
-                System.out.println(list.getClass().getName() + ": " + timer.time() + "ms");
-            } 
-            catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
-            }
+            
+            System.out.println(list.getClass().getSimpleName() + ": " 
+                                + timer.time() + "ms");
         }
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue, elemGenSeed);
-            try {
-                System.out.println(queue.getClass().getName() + ": " + timer.time() + "ms");
-            } 
-            catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
-            }
+            System.out.println(queue.getClass().getSimpleName() + ": " 
+                                + timer.time() + "ms");
         }
     }
     
@@ -137,21 +132,21 @@ public class Assignment1 extends Object {
         Assignment1 accessor = new Assignment1();
         for(List<Integer> list : accessor.lists) {
             ListTimer timer = new ListTimer(list, elemGenSeed);
-            try {
-                System.out.println(list.getClass().getName() + ": " + timer.time(mutations) + "ms");
-            } 
-            catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
+            long time = timer.time(mutations);
+            if (time == -1) {
+                errorExit("Insufficient elements to extract");
             }
+            System.out.println(list.getClass().getSimpleName() + ": " 
+                                + time + "ms");
         }
         for(Queue<Integer> queue : accessor.queues) {
             QueueTimer timer = new QueueTimer(queue, elemGenSeed);
-            try {
-                System.out.println(queue.getClass().getName() + ": " + timer.time(mutations) + "ms");
-            } 
-            catch(RuntimeException e) {
-                errorExit("RuntimeException: " + e.getMessage());
-            }
+            long time = timer.time(mutations);
+            if (time == -1) {
+                errorExit("Insufficient elements to extract");
+            }    
+            System.out.println(queue.getClass().getSimpleName() + ": " 
+                                + time + "ms");
         }
     }
     
@@ -159,5 +154,5 @@ public class Assignment1 extends Object {
     /* Print a message to stderr and exit with value 1. */
         System.err.println(msg);
         System.exit(1);
-    } 
+    }
 }
