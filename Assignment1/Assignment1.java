@@ -81,7 +81,7 @@ public class Assignment1 extends Object {
                 /* Check for a seed  */                      
                 
                 if(args.length == 1) {
-                    errorExit("No seed provided");
+                    errorExit("No seed provided\n Usage: java Assignment1 [-s seed] [mutations]");
                 }
                 try {
                     long seed = Long.parseLong(args[1]);
