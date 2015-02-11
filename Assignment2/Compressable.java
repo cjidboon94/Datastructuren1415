@@ -1,4 +1,4 @@
 public interface Compressable {
-    int calcIndex(Object key);
+    public int calcIndex(String key);
 }
 
