@@ -1,5 +1,6 @@
-import java.util.*;
-import java.io.*;
+import java.util.*; 
+import java.io.*; 
+
 class SpellChecker {
     public static void main(String[] args) {
         int hash_size;
@@ -19,7 +20,11 @@ class SpellChecker {
         textfile = args[1];
         hash_size = Integer.parseInt(args[2]);
         System.out.printf("Selected table size: %d\n", hash_size);
-        table = new Hashtable<String, String>(hash_size);
+        //Default:
+        //table = new Hashtable<String, String>(hash_size);
+
+        //Compressable function = new Divsion (hashsize);
+        HashTableOpen table = new HashTableOpen(hash_size, function);
        
         /* Read wordfile, and insert every word into the hash table. */
         try {
@@ -63,7 +68,14 @@ class SpellChecker {
 
         System.out.printf("Hash table contains %d words\n", table.size());
         System.out.printf("Hash table load factor %f\n",
-               (double)table.size()/hash_size);
+               (double)
+
+
+
+
+
+
+               size()/hash_size);
 
         System.out.printf("Text contains %d words\n", count);
         System.out.printf("typo's %d\n", typo);
