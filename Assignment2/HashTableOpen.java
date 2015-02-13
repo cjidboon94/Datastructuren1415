@@ -1,9 +1,11 @@
 public class HashTableOpen {
 	
+	String[] hashtable;
+	
 	public HashTableOpen(int hash_size, Compressable function) {
 
-	String[] hashtable = new String[hash_size];
-
+		hashtable = new String[hash_size];
+	}
 
 	public void put() {
 	//Put word (copy) in to array, with parameters word and index
@@ -16,9 +18,6 @@ public class HashTableOpen {
 	}
 
 	public int getSize() {
-
-		return hash_size.size();
-	}
-
+		return hashtable.length;
 	}
 }
