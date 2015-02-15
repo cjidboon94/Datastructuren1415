@@ -5,7 +5,7 @@ public class ChainedList extends Object {
 	private ChainedEntry last;
 	
 	public ChainedList() {
-		ChainedList(null);
+		this(null);
 	}
 	
 	public ChainedList(ChainedEntry entry){
@@ -29,8 +29,9 @@ public class ChainedList extends Object {
 		ChainedEntry head = first;
 		ChainedEntry tail = last;
 		
-		while( 	(head.getNext() != null && head.getKey() != key) || 
-				(tail.getPrev() != null && tail.getKey() != key)) {
+		while( 	head.getNext() != null && head.getKey().equals(key) && 
+				tail.getPrev() != null && tail.getKey().equals(key)) {
+			
 			head = head.getNext();
 			tail = tail.getPrev();
 		}
@@ -42,23 +43,18 @@ public class ChainedList extends Object {
 		
 	}
 	
-	public void put(String Key, String value){
-		ChainedEntry newEntry = new ChainedEntry(key, value);
-		
-		if(getFirst() != null) {
-			head = getFirst();
-			tail = getLast();
-			while( head.getNext() != null || tail.getPrev() ! = null) {
-				if(head.getKey() == key || tail.getKey() == key) {
-					return;
-				}
-				head = head.getNext();
-				tail = tail.getPrev();
+	public void put(ChainedEntry newEntry){
+		String key = newEntry.getKey();
+		ChainedEntry head = getFirst();
+		ChainedEntry tail = getLast();
+		while( head.getNext() != null || tail.getPrev() != null) {
+			if(head.getKey() == key || tail.getKey() == key) {
+				return;
 			}
-			setTail(newEntry);
-		} else {
-			this =  new this(newEntry);
+			head = head.getNext();
+			tail = tail.getPrev();
 		}
+		setTail(newEntry);
 	}
 	
 	public void setTail(ChainedEntry later) {

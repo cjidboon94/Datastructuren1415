@@ -6,7 +6,7 @@ public class ChainedEntry extends Object {
 	private ChainedEntry previous;
 	
 	public ChainedEntry(String key, String value){
-		ChainedEntry(key, value, null);
+		this(key, value, null);
 	}
 	
 	public ChainedEntry(String key, String value, ChainedEntry previous){
@@ -24,7 +24,7 @@ public class ChainedEntry extends Object {
 		return next;
 	}
 	
-	public ChainedEntry setNext(ChainedEntry next){
+	public void setNext(ChainedEntry next){
 		this.next = next;
 	}
 
@@ -33,7 +33,7 @@ public class ChainedEntry extends Object {
 		return previous;
 	}
 	
-	public ChainedEntry setPrev(ChainedEntry prev){
+	public void setPrev(ChainedEntry prev){
 		this.previous = prev;
 	}	
 }

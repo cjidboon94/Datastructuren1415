@@ -4,10 +4,10 @@ import java.io.*;
 class SpellChecker {
     public static void main(String[] args) {
         int hash_size;
-        int count = 0, typo = 0;
+        int count = 0, typo = 0, words = 0;
         long start = 0, end = 0;
         String wordfile, textfile;
-        Hashtable<String, String> table;
+        //Hashtable<String, String> table;
 
         /* Shared token to store for every word in the hash table. */
         String placeholder = "a";
@@ -23,7 +23,7 @@ class SpellChecker {
         //Default:
         //table = new Hashtable<String, String>(hash_size);
 
-        //Compressable function = new Divsion (hashsize);
+        Compressable function = new Division (hash_size);
         HashTableClosed table = new HashTableClosed(hash_size, function);
        
         /* Read wordfile, and insert every word into the hash table. */
@@ -34,6 +34,7 @@ class SpellChecker {
             while ((str = in.readLine()) != null) {
                 copy = str.toLowerCase();
                 table.put(copy, placeholder);
+                words++;
             }
             end = System.currentTimeMillis();
             in.close();
@@ -66,16 +67,9 @@ class SpellChecker {
             e.printStackTrace();
         }
 
-        System.out.printf("Hash table contains %d words\n", table.size());
+        System.out.printf("Hash table contains %d words\n", words);
         System.out.printf("Hash table load factor %f\n",
-               (double)
-
-
-
-
-
-
-               size()/hash_size);
+               (double) words/hash_size);
 
         System.out.printf("Text contains %d words\n", count);
         System.out.printf("typo's %d\n", typo);
