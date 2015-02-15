@@ -1,5 +1,5 @@
 
-public class ChainedList extends Object {
+public class ChainedList {
 	
 	private ChainedEntry first;
 	private ChainedEntry last;

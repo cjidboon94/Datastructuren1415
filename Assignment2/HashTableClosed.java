@@ -1,7 +1,7 @@
 import java.lang.*;
 import java.util.*;
 
-public class HashTableClosed extends Object {
+public class HashTableClosed implements HashTable {
 	
 	ChainedList[] hashtable;
 	Compressable function;

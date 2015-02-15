@@ -1,5 +1,5 @@
 
-public class ChainedEntry extends Object {
+public class ChainedEntry implements Entry {
 	private String key;
 	private String value;
 	private ChainedEntry next;

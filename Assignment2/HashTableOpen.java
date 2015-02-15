@@ -1,26 +1,40 @@
 import java.lang.*;
 import java.util.*;
 
-public class HashTableOpen extends Object {
+public class HashTableOpen implements HashTable {
 	
-	ChainedList[] hashtable;
-	Compressable function;
+	private OpenEntry[] hashtable;
+	private Compressable function;
+	private int size;
 	
-	
-	public HashTableOpen(int hash_size, String function) {
+	public HashTableOpen(int hash_size, Compressable function) {
 		function = new Division(hash_size);
-		hashtable = new ChainedList[];
-		
+		hashtable = new OpenEntry[hash_size];
+		for( OpenEntry entry : hashtable ){
+			entry = null;
+		}
+		size = 0;
 	}
 
 	public void put(String key, String value) {
 		int index = function.calcIndex(key);
-		hashtable[index].put(key, value);
+		if(hashtable[index] == null) {
+			hashtable[index] = new OpenEntry(key, value);
+		} else {
+			boolean inserted = false;
+			for(int i = index; i < size(); i++){
+				
+			}
+			
+		}
 	}
 
 	public String get(String key) {
 		int index = function.calcIndex(key);
-		return hashtable[index].get(key);
-		
+		return "temp";
+	}
+	
+	public int size(){
+		return size;
 	}
 }
