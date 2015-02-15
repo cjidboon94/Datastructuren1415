@@ -24,8 +24,9 @@ public class HashTableClosed extends Object {
 			hashtable[index].put(newEntry);
 		} else {
 			hashtable[index] = new ChainedList(newEntry);
-			size++;
+			
 		}
+		size++;
 	}
 
 	public String get(String key) {
