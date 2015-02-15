@@ -1,23 +1,26 @@
-public class HashTableOpen {
+import java.lang.*;
+import java.util.*;
+
+public class HashTableOpen extends Object {
 	
-	String[] hashtable;
+	ChainedList[] hashtable;
+	Compressable function;
 	
-	public HashTableOpen(int hash_size, Compressable function) {
-
-		hashtable = new String[hash_size];
+	
+	public HashTableOpen(int hash_size, String function) {
+		function = new Division(hash_size);
+		hashtable = new ChainedList[];
+		
 	}
 
-	public void put() {
-	//Put word (copy) in to array, with parameters word and index
-
+	public void put(String key, String value) {
+		int index = function.calcIndex(key);
+		hashtable[index].put(key, value);
 	}
 
-	public void get() {
-	//Retrieve word from array, parameters word and index
-
-	}
-
-	public int getSize() {
-		return hashtable.length;
+	public String get(String key) {
+		int index = function.calcIndex(key);
+		return hashtable[index].get(key);
+		
 	}
 }
