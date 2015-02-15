@@ -9,25 +9,25 @@ public class ChainedEntry implements Entry {
 		this(key, value, null);
 	}
 	
-	public ChainedEntry(String key, String value, ChainedEntry previous){
+	public ChainedEntry(String key, String value, ChainedEntry prev){
 		this.key = key;
 		this.value = value;
-		this.previous = previous;
+		this.previous = prev;
 		this.next = null;
 	}
 	
+	
 	public String getKey(){
-		return key;
+		return this.key;
 	}
 
 	public ChainedEntry getNext(){
-		return next;
+		return this.next;
 	}
 	
 	public void setNext(ChainedEntry next){
 		this.next = next;
 	}
-
 	
 	public ChainedEntry getPrev(){
 		return previous;

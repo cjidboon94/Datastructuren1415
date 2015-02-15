@@ -7,6 +7,7 @@ class SpellChecker {
         int count = 0, typo = 0;
         long start = 0, end = 0;
         String wordfile, textfile;
+        HashTable table;
         //Hashtable<String, String> table;
 
         /* Shared token to store for every word in the hash table. */
@@ -24,7 +25,7 @@ class SpellChecker {
         //table = new Hashtable<String, String>(hash_size);
 
         Compressable function = new Division (hash_size);
-        HashTableClosed table = new HashTableClosed(hash_size, function);
+        table = new HashTableClosed(hash_size, function);
        
         /* Read wordfile, and insert every word into the hash table. */
         try {

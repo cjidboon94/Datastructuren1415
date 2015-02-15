@@ -20,11 +20,10 @@ public class HashTableClosed implements HashTable {
 	public void put(String key, String value) {
 		int index = function.calcIndex(key);
 		ChainedEntry newEntry = new ChainedEntry(key, value);
-		if(hashtable[index] != null){
+		if(hashtable[index] != null) {
 			hashtable[index].put(newEntry);
 		} else {
 			hashtable[index] = new ChainedList(newEntry);
-			
 		}
 		size++;
 	}
@@ -34,7 +33,7 @@ public class HashTableClosed implements HashTable {
 		return hashtable[index].get(key);
 	}
 	
-	public int size(){
+	public int size() {
 		return size;
 	}
 }

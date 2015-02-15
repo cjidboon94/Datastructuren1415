@@ -17,26 +17,27 @@ public class ChainedList {
 		return first;
 	}
 	
-	public ChainedEntry getLast(){
+	private ChainedEntry getLast(){
 		return last;
 	}
 	
-	public void setLast(ChainedEntry last){
+	private void setLast(ChainedEntry last){
 		this.last = last;
 	}
 	
 	public String get(String key) {
-		ChainedEntry head = first;
-		ChainedEntry tail = last;
+		ChainedEntry head = getFirst();
+		ChainedEntry tail = getLast();
 		
-		while( 	head.getNext() != null && head.getKey().equals(key) && 
-				tail.getPrev() != null && tail.getKey().equals(key)) {
-			
+		while( 	head.getNext() != null && ! head.getKey().equals(key) &&
+				tail.getPrev() != null && ! tail.getKey().equals(key)) {
+					
 			head = head.getNext();
 			tail = tail.getPrev();
 		}
-		if(head != null || tail != null) {
-			return key;
+		if( (head != null && head.getKey().equals(key)) ||
+			(tail != null && tail.getKey().equals(key))) {
+				return key;
 		} else {
 			return null;
 		}
@@ -47,8 +48,8 @@ public class ChainedList {
 		String key = newEntry.getKey();
 		ChainedEntry head = getFirst();
 		ChainedEntry tail = getLast();
-		while( head.getNext() != null || tail.getPrev() != null) {
-			if(head.getKey() == key || tail.getKey() == key) {
+		while( head.getNext() != null && tail.getPrev() != null) {
+			if(head.getKey().equals(key) || tail.getKey().equals(key)) {
 				return;
 			}
 			head = head.getNext();
@@ -57,9 +58,9 @@ public class ChainedList {
 		setTail(newEntry);
 	}
 	
-	public void setTail(ChainedEntry later) {
+	private void setTail(ChainedEntry later) {
 		getLast().setNext(later);
-		later.setPrev(getLast());
+		later.setPrev(later);
 		setLast(later);
 	}
 }
