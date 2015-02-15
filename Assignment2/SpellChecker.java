@@ -24,7 +24,7 @@ class SpellChecker {
         //table = new Hashtable<String, String>(hash_size);
 
         //Compressable function = new Divsion (hashsize);
-        HashTableOpen table = new HashTableOpen(hash_size, function);
+        HashTableClosed table = new HashTableClosed(hash_size, function);
        
         /* Read wordfile, and insert every word into the hash table. */
         try {
