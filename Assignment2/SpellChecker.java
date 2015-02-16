@@ -8,25 +8,34 @@ class SpellChecker {
         long start = 0, end = 0;
         String wordfile, textfile;
         HashTable table;
+        String table_type;
         //Hashtable<String, String> table;
 
         /* Shared token to store for every word in the hash table. */
         String placeholder = "a";
 
-        if (!(args.length == 3) ) {
-            System.out.println("Usage: java SpellChecker <wordfile> <text> <size>");
+        if (!(args.length == 4) ) {
+            System.out.println("Usage: java SpellChecker <wordfile> <text> <size> ([chained]| [linear])");
             System.exit(0);
         }
         wordfile = args[0];
         textfile = args[1];
         hash_size = Integer.parseInt(args[2]);
+        table_type = args[3];
         System.out.printf("Selected table size: %d\n", hash_size);
         //Default:
         //table = new Hashtable<String, String>(hash_size);
 
         Compressable function = new Division (hash_size);
-        table = new HashTableClosed(hash_size, function);
-       
+        if(table_type.equals("chained")) {
+			table = new HashTableChained(hash_size, function);
+		} else if( table_type.equals("linear")) {
+			table = new HashTableOpen(hash_size, function);
+		} else{
+			table = null;
+			System.out.println("Usage: java SpellChecker <wordfile> <text> <size> ([chained]| [linear])");
+			System.exit(0);
+		}
         /* Read wordfile, and insert every word into the hash table. */
         try {
             BufferedReader in = new BufferedReader(new FileReader(wordfile));
@@ -69,7 +78,7 @@ class SpellChecker {
 
         System.out.printf("Hash table contains %d words\n", table.size());
         System.out.printf("Hash table load factor %f\n",
-               (double) table.size()/hash_size);
+               (double) table.size()/table.length());
 
         System.out.printf("Text contains %d words\n", count);
         System.out.printf("typo's %d\n", typo);
