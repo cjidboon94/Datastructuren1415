@@ -1,5 +1,3 @@
-
-
 public interface HashTable {
 	
 	public void put(String key, String value);

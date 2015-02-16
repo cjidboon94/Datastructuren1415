@@ -10,7 +10,7 @@ public class HashTableOpen implements HashTable {
 	public HashTableOpen(int hash_size, Compressable function) {
 		function = new Division(hash_size);
 		hashtable = new OpenEntry[hash_size];
-		for( OpenEntry entry : hashtable ){
+		for (OpenEntry entry : hashtable) {
 			entry = null;
 		}
 		size = 0;
@@ -18,11 +18,11 @@ public class HashTableOpen implements HashTable {
 
 	public void put(String key, String value) {
 		int index = function.calcIndex(key);
-		if(hashtable[index] == null) {
+		if (hashtable[index] == null) {
 			hashtable[index] = new OpenEntry(key, value);
 		} else {
 			boolean inserted = false;
-			for(int i = index; i < size(); i++){
+			for (int i = index; i < size(); i++) {
 				
 			}
 			
@@ -34,7 +34,7 @@ public class HashTableOpen implements HashTable {
 		return "temp";
 	}
 	
-	public int size(){
+	public int size() {
 		return size;
 	}
 }
