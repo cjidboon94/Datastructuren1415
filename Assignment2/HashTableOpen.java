@@ -6,9 +6,12 @@ public class HashTableOpen implements HashTable {
 	private OpenEntry[] hashtable;
 	private Compressable function;
 	private int size;
+	private int test;
+	private int length;
 	
 	public HashTableOpen(int hash_size, Compressable function) {
 		this.function = function;
+		this.length = hash_size;
 		hashtable = new OpenEntry[hash_size];
 		for( OpenEntry entry : hashtable ){
 			entry = null;
@@ -21,23 +24,34 @@ public class HashTableOpen implements HashTable {
 		if(hashtable[index] == null) {
 			hashtable[index] = new OpenEntry(key, value);
 		} else if(! insert(index, key, value)) {
-			resize(key, value);
+			// resize(key, value);
 		}
+		size++;
 	}
 	
 	public String get(String key) {
+		
 		int index = function.calcIndex(key);
+		if((test % 4000) == 0)
+			System.out.println((double)test/638285);
 		if(	hashtable[index] != null &&
 			hashtable[index].getKey().equals(key)) {
+				test++;
 				return key;
 		} else if(find(index, key)) {
+			test++;
 			return key;
 		}
+		test++;
 		return null;
 	}
 	
 	public int size(){
 		return size;
+	}
+	
+	public int length(){
+		return hashtable.length;
 	}
 	
 	private boolean insert(int index, String key, String value) {
@@ -74,8 +88,9 @@ public class HashTableOpen implements HashTable {
 	
 	
 	private void resize(String key, String value) {
-		OpenEntry[] newArr = new OpenEntry[2*hashtable.length];
-		function = new Division(2*hashtable.length);
+		OpenEntry[] newArr = new OpenEntry[2*length];
+		function = new Division(2*length);
+		this.length *= 2;
 		
 		for(OpenEntry entry : newArr) {
 			entry = null;
@@ -88,5 +103,11 @@ public class HashTableOpen implements HashTable {
 			newArr[index] = entry;
 		}
 		hashtable = newArr;
+		int index = function.calcIndex(key);
+		if(hashtable[index] == null) {
+			hashtable[index] = new OpenEntry(key, value);
+		} else {
+			insert(index, key, value);
+		}
 	}
 }

@@ -29,8 +29,12 @@ class SpellChecker {
         Compressable function = new Division (hash_size);
         if(table_type.equals("chained")) {
 			table = new HashTableChained(hash_size, function);
-		} else {
+		} else if( table_type.equals("linear")) {
 			table = new HashTableOpen(hash_size, function);
+		} else{
+			table = null;
+			System.out.println("Usage: java SpellChecker <wordfile> <text> <size> ([chained]| [linear])");
+			System.exit(0);
 		}
         /* Read wordfile, and insert every word into the hash table. */
         try {
@@ -74,7 +78,7 @@ class SpellChecker {
 
         System.out.printf("Hash table contains %d words\n", table.size());
         System.out.printf("Hash table load factor %f\n",
-               (double) table.size()/hash_size);
+               (double) table.size()/table.length());
 
         System.out.printf("Text contains %d words\n", count);
         System.out.printf("typo's %d\n", typo);
