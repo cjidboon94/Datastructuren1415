@@ -23,14 +23,8 @@ public class HashTableOpen implements HashTable {
 		int index = function.calcIndex(key);
 		if (hashtable[index] == null) {
 			hashtable[index] = new OpenEntry(key, value);
-		} else {
-			boolean inserted = false;
-			for (int i = index; i < size(); i++) {
-				
-			}
-			
-		} else if(! insert(index, key, value)) {
-			// resize(key, value);
+		} else if( !insert(index, key, value)) {
+			 resize(key, value);
 			
 		}
 		size++;
@@ -39,8 +33,6 @@ public class HashTableOpen implements HashTable {
 	public String get(String key) {
 		
 		int index = function.calcIndex(key);
-		if((test % 4000) == 0)
-			System.out.println((double)test/638285);
 		if(hashtable[index] != null &&
 			hashtable[index].getKey().equals(key)) {
 				test++;
@@ -96,20 +88,29 @@ public class HashTableOpen implements HashTable {
 	
 	private void resize(String key, String value) {
 		OpenEntry[] newArr = new OpenEntry[2*length];
+		
 		function = new Division(2*length);
+		OpenEntry[] temp = new OpenEntry[length];
+		System.arraycopy(hashtable, 0, temp, 0, length );
+		hashtable = newArr;
+		
 		this.length *= 2;
 		
-		for(OpenEntry entry : newArr) {
+		for(OpenEntry entry : hashtable) {
 			entry = null;
 		}
-		for(OpenEntry entry : hashtable) {
+
+		for(OpenEntry entry : temp) {
 			if(entry == null) {
 				continue;
 			}
 			int index = function.calcIndex(entry.getKey());
-			newArr[index] = entry;
+			if(hashtable[index] == null) {	
+				hashtable[index] = entry;
+			} else {	
+				insert(index, entry.getKey(), entry.getVal());
+			}
 		}
-		hashtable = newArr;
 		int index = function.calcIndex(key);
 		if(hashtable[index] == null) {
 			hashtable[index] = new OpenEntry(key, value);

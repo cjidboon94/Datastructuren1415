@@ -11,4 +11,7 @@ public class OpenEntry implements Entry {
 	public String getKey() {
 		return key;
 	}
+	public String getVal() {
+		return value;
+	}
 }
