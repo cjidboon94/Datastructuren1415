@@ -1,3 +1,15 @@
+/* Assignment 2 - Datastructuren
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 16-02-2015
+ * File: Spellchecker.java
+ * 
+ * Class description: Main class of this assignment. 
+ * Provided class for benchmarking the hashtable implementations.
+ */
+
+
+
 import java.util.*; 
 import java.io.*; 
 
@@ -9,13 +21,12 @@ class SpellChecker {
         String wordfile, textfile;
         HashTable table;
         String table_type;
-        //Hashtable<String, String> table;
 
         /* Shared token to store for every word in the hash table. */
         String placeholder = "a";
 
         if (!(args.length == 4) ) {
-            System.out.println("Usage: java SpellChecker <wordfile> <text> <size> ([chained]| [linear])");
+            System.out.println("Usage: java SpellChecker <wordfile> <text> <size> ([chained]|[linear])");
             System.exit(0);
         }
         wordfile = args[0];
@@ -23,9 +34,7 @@ class SpellChecker {
         hash_size = Integer.parseInt(args[2]);
         table_type = args[3];
         System.out.printf("Selected table size: %d\n", hash_size);
-        //Default:
-        //table = new Hashtable<String, String>(hash_size);
-
+        
         Compressable function = new Division (hash_size);
         if(table_type.equals("chained")) {
 			table = new HashTableChained(hash_size, function);
@@ -85,6 +94,7 @@ class SpellChecker {
 
         System.out.println("zoeken woorden in " + (end - start) + " ms");
     }
+    
     /* Checks is word contains digits. So it can be ignored for spell
      * checking. */
     static boolean contains_numbers(String str) {
