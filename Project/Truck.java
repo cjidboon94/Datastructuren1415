@@ -1,6 +1,6 @@
 public class Truck {
 
-	String orientation;
+	int orientation;
 	int x1;
 	int x2;
 	int x3;
@@ -8,7 +8,7 @@ public class Truck {
 	int y2;
 	int y3;
 
-	Truck(String orientation, int position1, int  position2) {
+	Truck(int orientation, int position1, int  position2) {
 
 		this.orientation = orientation;
 		this.x1 = x1;
