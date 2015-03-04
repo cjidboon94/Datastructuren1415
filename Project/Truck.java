@@ -1,21 +1,8 @@
-public class Truck {
+public class Truck extends Vehicle{
 
-	int orientation;
-	int x1;
-	int x2;
-	int x3;
-	int y1;
-	int y2;
-	int y3;
-
-	Truck(int orientation, int position1, int  position2) {
-
-		this.orientation = orientation;
-		this.x1 = x1;
-		this.x2 = x2;
+	Truck(int orientation, int x1, int  y1, int x2, int y2, int x3, int y3) {
+		super(orientation, x1, y1, x2, y2);
 		this.x3 = x3;
-		this.y1 = y1;
-		this.y2 = y2;
 		this.y3 = y3;
 	}
 }
