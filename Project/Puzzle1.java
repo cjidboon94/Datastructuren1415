@@ -4,9 +4,10 @@ public class Puzzle1 extends RushHour {
 		setup();
 	}
 
-	public static void setup(){
+	public static void setup() {
 		//Do setup
 		Board puzzle = new Board(6);
+
 		puzzle.board[2][3] = new Car(0, 2, 3, 2, 4, true);
 		puzzle.board[2][4] = puzzle.board[2][3];
 		
@@ -39,8 +40,6 @@ public class Puzzle1 extends RushHour {
 		puzzle.board[5][5] = puzzle.board[5][4];
 		
 		//End setup
-		
-		
 		super.play(puzzle)
 	}
 	

@@ -1,47 +1,53 @@
-public class Puzzle2 {
+public class Puzzle2 extends RushHour {
 
-	int[][] board = new int[6][6];
+	public static void main(String[] args) {
+		setup();
+	}
 
-	Puzzle2() {
+	public static void setup() {	
 
-		board[2][2] = 99;
-		board[2][3] = 99;
+		Board puzzle = new Board(6);
 
-		board[0][2] = 1;
-		board[0][3] = 1;
+		puzzle.board[2][2] = new Car(0, 2, 2, 2, 3, true);
+		puzzle.board[2][3] = puzzle.board[2][2];
 
-		board[0][4] = 2;
-		board[0][5] = 2;
+		puzzle.board[0][2] = new Car(0, 0, 2, 0, 3);
+		puzzle.board[0][3] = puzzle.board[0][2];
 
-		board[1][1] = 3;
-		board[1][2] = 3;
+		puzzle.board[0][4] = new Car(0, 0, 4, 0, 4);
+		puzzle.board[0][5] = puzzle.board[0][4];
 
-		board[1][3] = 4;
-		board[1][4] = 4;
+		puzzle.board[1][1] = new Car(0, 1, 1, 1, 2);
+		puzzle.board[1][2] = puzzle.board[1][1];
 
-		board[1][5] = 5;
-		board[2][5] = 5;
-		board[3][5] = 5;
+		puzzle.board[1][3] = new Car(0, 1, 3, 1, 4);
+		puzzle.board[1][4] = puzzle.board[1][3];
 
-		board[2][4] = 6;
-		board[3][4] = 6;
+		puzzle.board[1][5] = new Truck(1, 1, 5, 2, 5 3, 5);
+		puzzle.board[2][5] = puzzle.board[1][5];
+		puzzle.board[3][5] = puzzle.board[1][5];
 
-		board[3][0] = 7;
-		board[3][1] = 7;
+		puzzle.board[2][4] = new Car(1, 2, 4, 3, 4);
+		puzzle.board[3][4] = puzzle.board[2][4];
 
-		board[3][2] = 8;
-		board[3][3] = 8;
+		puzzle.board[3][0] = new Car(0, 3, 0, 3, 1);
+		puzzle.board[3][1] = puzzle.board[3][0];
 
-		board[4][0] = 9;
-		board[5][0] = 9;
+		puzzle.board[3][2] = new Car(0, 3, 2, 3, 3);
+		puzzle.board[3][3] = puzzle.board[3][2];
 
-		board[4][3] = 10;
-		board[5][3] = 10;
+		puzzle.board[4][0] = new Car(1, 4, 0, 5, 0);
+		puzzle.board[5][0] = puzzle.board[4][0];
 
-		board[4][4] = 11;
-		board[4][5] = 11;
+		puzzle.board[4][3] = new Car(1, 4, 3, 5, 3);
+		puzzle.board[5][3] = puzzle.board[4][3];
 
-		board[5][4] = 12;
-		board[5][5] = 12;
+		puzzle.board[4][4] = new Car(0, 4, 4, 4, 5);
+		puzzle.board[4][5] = puzzle.board[4][4];
+
+		puzzle.board[5][4] = new Car(0, 5, 4, 5, 5);
+		puzzle.board[5][5] = puzzle.board[5][4];
+
+		super.play(puzzle)
 	}
 }
