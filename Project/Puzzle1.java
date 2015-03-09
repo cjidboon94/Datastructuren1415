@@ -12,7 +12,7 @@ public class Puzzle1 extends RushHour {
 		puzzle.board[2][4] = puzzle.board[2][3];
 		
 		
-		puzzle.board[0][2] = new Truck(1, 0, 2, 1, 2, 2, 2));
+		puzzle.board[0][2] = new Truck(1, 0, 2, 1, 2, 2, 2);
 		puzzle.board[1][2] = puzzle.board[0][2];
 		puzzle.board[2][2] = puzzle.board[0][2];
 		
