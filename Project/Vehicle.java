@@ -29,6 +29,11 @@ public abstract class Vehicle {
 		if(moves > 0) {
 			for(int i = moves; i > 0 && legal; i--) {
 				if(!legalMove(i, board)) {
+					if((moves-i) == 0){
+						System.out.println("That way is blocked");
+					} else {
+						System.out.println("Sorry. We could only move it " + (moves-i) + " steps");
+					}
 					legal = false;
 				} else {
 					move(moves, board);
@@ -37,6 +42,11 @@ public abstract class Vehicle {
 		} else if (moves < 0) {
 			for(int i = moves; i < 0 && legal; i++) {
 				if(!legalMove(i, board)){
+					if((moves-i) == 0){
+						System.out.println("That way is blocked");
+					} else {
+						System.out.println("Sorry. We could only move it " + (moves-i) + " steps");
+					}
 					legal = false;
 				
 				} else {

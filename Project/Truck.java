@@ -1,4 +1,4 @@
-public class Truck extends Vehicle{
+public class Truck extends Vehicle {
 
 	private int x3;
 	private int y3;

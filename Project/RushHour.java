@@ -11,24 +11,32 @@ public class RushHour {
 	
 	public int play(){
 		int move = 0;
-		printBoard(move);
 		Scanner reader = new Scanner(System.in);
 		while(!won()){
-				
+			printBoard(move);
 				try{
+					System.out.println("Which vehicle would you like to move? (Or type RESET to restart)");
 					String name = reader.next();
 					if(name.equals("RESET")){
 						return 1;
+					} else if(name.equals("0")){
+						System.out.println("There's no zeroth object");
+						continue;
 					}
 					Vehicle vehicle = puzzle.getVehicle(name);
+					System.out.println("How many steps would you like to move it?");
+					System.out.println("Positive value for right/down, Negative value for left/up");
 					int moves = reader.nextInt();
+					if(moves == 0){
+						System.out.println("Why would you take no steps? Seriously. Why?");
+						continue;
+					}
 					vehicle.mainMove(moves, puzzle);
 				} catch(RuntimeException e) {
 					System.out.println("Incorrect input");
 					continue;
 				}
 			move++;
-			printBoard(move);
 		}
 		reader.close();
 		System.out.println("You won in " + move + " moves.");
