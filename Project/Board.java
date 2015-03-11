@@ -1,13 +1,18 @@
+import java.util.*;
+import java.lang.*;
+
 
 public class Board { 
 	private int size;
-	private Vehicle[][] board;
-	
+	public Vehicle[][] board;
+	private ArrayList<Vehicle> vehicles;
+
 	/* Creates an empty board */
 	public Board(int size) {
 		this.size = size;
 		board = new Vehicle[size][size];
 		clearBoard();
+		vehicles = new ArrayList<Vehicle>();
 	}
 	
 	private  void clearBoard() {
@@ -18,27 +23,19 @@ public class Board {
 		}
 	}
 
+	public Vehicle getVehicle(String name){
+		if(name.equals("p")){
+			return vehicles.get(0);
+		}
+		int index = Integer.parseInt(name, 16);
+		return vehicles.get(index);
+	}
+
+	public void addVehicle(int name, Vehicle vehicle){
+		vehicles.add(name, vehicle);
+	}
+
 	public int getSize(){
 		return size;
 	}
 }	
-	
-	
-	/*
-	public void moveVehicle(int moves, int x, int y) {
-		Vehicle temp = board[x][y].getVehicle();
-		if(moves > 0) {
-			for(int i = 1; i < moves ; i++) {
-				move(x+i, y+i, temp);
-			} 
-		} else if(moves < 0) {
-			for(int i = -1; i > moves; i--) {
-				move(x+i, y+i, temp);
-			}
-		}
-	}
-	
-	private void move() {
-	
-	}*/
-

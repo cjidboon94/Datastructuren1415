@@ -4,6 +4,7 @@ public class Square {
 	Vehicle vehicle;
 	final int x;
 	final int y;
+
 	
 	public Square(int x, int y){
 		this(null, x, y);
@@ -11,11 +12,6 @@ public class Square {
 	
 	public Square(Vehicle vehicle, int x, int y){
 		this.vehicle = vehicle;
-		if(vehicle != null) {
-			this.empty = false;
-		} else {
-			this.empty = true;
-		}
 		this.x = x;
 		this.y = y;
 	}
