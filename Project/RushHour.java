@@ -12,11 +12,13 @@ public class RushHour {
 	public int play(){
 		int move = 0;
 		Scanner reader = new Scanner(System.in);
+		String previous = "";
+		String name;
 		while(!won()){
 			printBoard(move);
 				try{
 					System.out.println("Which vehicle would you like to move? (Or type RESET to restart)");
-					String name = reader.next();
+					name = reader.next();
 					if(name.equals("RESET")){
 						return 1;
 					} else if(name.equals("0")){
@@ -36,7 +38,10 @@ public class RushHour {
 					System.out.println("Incorrect input");
 					continue;
 				}
-			move++;
+			if(!previous.equals(name)){
+				previous = name;
+				move++;
+			}
 		}
 		reader.close();
 		System.out.println("You won in " + move + " moves.");
