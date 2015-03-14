@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-/* Abstract class that  */
-
 public abstract class Vehicle {
 	
 	public int orientation;

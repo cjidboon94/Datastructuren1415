@@ -1,8 +1,8 @@
-public class Car extends Vehicle{
+public class Car extends Vehicle {
 
 	private boolean player;
 	
-	public Car(char name, int orientation, int y1, int x1, int y2, int x2){
+	public Car(char name, int orientation, int y1, int x1, int y2, int x2) {
 		this(name, orientation, y1, x1, y2, x2, false);
 	}
 	
@@ -15,7 +15,7 @@ public class Car extends Vehicle{
 		return player;
 	}
 
-	protected void move(int moves, Board board){
+	protected void move(int moves, Board board) {
 		if(moves > 0){
 			board.board[y1][x1] = null;
 			if(orientation == 0) {

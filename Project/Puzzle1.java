@@ -1,4 +1,4 @@
-public class Puzzle1 implements Runnable{
+public class Puzzle1 implements Runnable {
 
 	GUI gui;
 
