@@ -1,12 +1,15 @@
 import java.util.*;
-import java.lang.*;
 
 public class RushHour {
 	
 	private Board puzzle;
+	private GUI g;
 	
-	public RushHour(Board puzzle){
+	public RushHour(Board puzzle, GUI gui){
 		this.puzzle = puzzle;
+		g = gui;
+		g.setBoard(puzzle);
+		g.drawBoard();
 	}
 	
 	public int play(){
@@ -16,10 +19,11 @@ public class RushHour {
 		String name;
 		while(!won()){
 			printBoard(move);
+			g.drawBoard();
 				try{
 					System.out.println("Which vehicle would you like to move? (Or type RESET to restart)");
 					name = reader.next();
-					if(name.equals("RESET")){
+					if(name.equalsIgnoreCase("RESET")){
 						return 1;
 					} else if(name.equals("0")){
 						System.out.println("There's no zeroth object");
@@ -71,4 +75,9 @@ public class RushHour {
 
 	  	System.out.println("");
 	}
+	
+	public Board getBoard(){
+		return puzzle;
+	}
+	
 }

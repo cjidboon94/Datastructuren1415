@@ -1,13 +1,15 @@
+import java.util.ArrayList;
+
 /* Abstract class that  */
 
 public abstract class Vehicle {
 	
-	protected  int orientation;
-	protected  final  char name;
-	protected  int x1;
-	protected  int x2;
-	protected  int y1;
-	protected  int y2;
+	public int orientation;
+	public final char name;
+	public int x1;
+	public int x2;
+	public int y1;
+	public int y2;
 	
 	/* Default constructor. Saves the position and the orientation of the vehicle */
 	public Vehicle (char name, int orientation, int y1, int x1, int y2, int x2){
@@ -66,4 +68,5 @@ public abstract class Vehicle {
 
 	/* Checks if the next square is clear */
 	protected abstract boolean clearRoad(int move, Board board);
+	
 }

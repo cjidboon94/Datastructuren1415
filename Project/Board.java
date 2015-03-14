@@ -1,6 +1,4 @@
 import java.util.*;
-import java.lang.*;
-
 
 public class Board { 
 	private int size;
@@ -37,5 +35,9 @@ public class Board {
 
 	public int getSize(){
 		return size;
+	}
+
+	public ArrayList<Vehicle> getVehicles() {
+		return vehicles;
 	}
 }	

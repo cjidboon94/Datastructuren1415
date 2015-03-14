@@ -1,10 +1,20 @@
-public class Puzzle1 {
+public class Puzzle1 implements Runnable{
 
-	public static void main(String[] args) {
-		RushHour RH = new RushHour(setup());
+	GUI gui;
+
+	public Puzzle1(GUI g) {
+		gui = g;
+	}
+
+	public void run(){
+		begin();
+	}
+	
+	public void begin(){
+		RushHour RH = new RushHour(setup(),gui);
 		while(RH.play() == 1){
 			System.out.println("Restarting");
-			RH = new RushHour(setup());
+			RH = new RushHour(setup(),gui);
 		}
 	}
 
@@ -53,4 +63,7 @@ public class Puzzle1 {
 
 		return puzzle;
 	}
+	
+
+	
 }

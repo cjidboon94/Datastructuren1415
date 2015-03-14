@@ -1,7 +1,7 @@
 public class Truck extends Vehicle {
 
-	private int x3;
-	private int y3;
+	public int x3;
+	public int y3;
 
 	Truck(char name, int orientation, int y1, int  x1, int y2, int x2, int y3, int x3) {
 		super(name, orientation, y1, x1, y2, x2);
