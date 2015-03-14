@@ -1,4 +1,4 @@
-/* Abstract class that  */
+/* Abstract class that implements vehicles */
 
 public abstract class Vehicle {
 	

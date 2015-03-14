@@ -17,13 +17,19 @@ public class RushHour {
 		while(!won()){
 			printBoard(move);
 				try{
-					System.out.println("Which vehicle would you like to move? (Or type RESET to restart)");
-					name = reader.next();
-					if(name.equals("RESET")){
+					System.out.println("Which vehicle would you like to move?");
+					System.out.println("Type Reset/R to restart and Quit/Q");
+					name = reader.next().toLowerCase();
+					if(name.equals("reset") || name.equals("r")){
+						reader.close();
 						return 1;
 					} else if(name.equals("0")){
 						System.out.println("There's no zeroth object");
 						continue;
+					} else if(name.equals("quit") || name.equals("q")){
+						System.out.println("Bye");
+						reader.close();
+						return 0;
 					}
 					Vehicle vehicle = puzzle.getVehicle(name);
 					System.out.println("How many steps would you like to move it?");

@@ -1,4 +1,4 @@
-public class Puzzle2  {
+public class Puzzle2 {
 
 	public static void main(String[] args) {
 		RushHour RH = new RushHour(setup());
@@ -21,7 +21,7 @@ public class Puzzle2  {
 		puzzle.addVehicle(1, puzzle.board[0][3]);
 
 
-		puzzle.board[0][4] = new Car('2', 0, 0, 4, 0, 4);
+		puzzle.board[0][4] = new Car('2', 0, 0, 4, 0, 5);
 		puzzle.board[0][5] = puzzle.board[0][4];
 		puzzle.addVehicle(2, puzzle.board[0][5]);
 
