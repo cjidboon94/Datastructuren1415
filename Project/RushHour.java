@@ -37,6 +37,7 @@ public class RushHour {
 					} else if(name.equalsIgnoreCase("quit") || name.equalsIgnoreCase("q")){
 						System.out.println("Bye");
 						reader.close();
+						System.exit(0);
 						return 0;
 					}
 					Vehicle vehicle = puzzle.getVehicle(name);

@@ -1,11 +1,24 @@
 public class MainMenu {
 
-	public void start(){
+	public void start(String[] args){
+		if (args.length > 2){
+			System.out.println("Usage: MainMenu or MainMenu GUI");
+			System.exit(1);
+		}
+		else if (args.length == 1){
+			if (args[0].equals("GUI")){
+				System.out.println("Starting GUI play mode");
+			}
+			else{
+				System.out.println("Usage: MainMenu or MainMenu GUI");
+				System.exit(1);
+			}
+		}
 		GUI g = new GUI();
 	}
 	
 	public static void main(String[] args){
-		new MainMenu().start();
+		new MainMenu().start(args);
 	}
 	
 }
