@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-
 public abstract class Vehicle {
 	
-	public int orientation;
-	public final char name;
+	protected final int orientation;
+	protected final char name;
 	public int x1;
 	public int x2;
 	public int y1;
@@ -23,8 +21,12 @@ public abstract class Vehicle {
 		return name;
 	}
 
+	public int getOr(){
+		return orientation;
+	}
+
 	/* Entry method that performs all checks for a move. */
-	public void mainMove(int moves, Board board) {
+	public boolean mainMove(int moves, Board board) {
 		boolean legal = true;
 		if(moves > 0) {
 			for(int i = moves; i > 0 && legal; i--) {
@@ -32,7 +34,8 @@ public abstract class Vehicle {
 					if((moves-i) == 0){
 						System.out.println("That way is blocked");
 					} else {
-						System.out.println("Sorry. We could only move it " + (moves-i) + " steps");
+						System.out.println("Sorry. We could only move it " + 
+											(moves-i) + " steps");
 					}
 					legal = false;
 				} else {
@@ -45,7 +48,8 @@ public abstract class Vehicle {
 					if((moves-i) == 0){
 						System.out.println("That way is blocked");
 					} else {
-						System.out.println("Sorry. We could only move it " + (moves-i) + " steps");
+						System.out.println("Sorry. We could only move it " + 
+											(moves-i) + " steps");
 					}
 					legal = false;
 				
@@ -54,6 +58,7 @@ public abstract class Vehicle {
 				}
 			}
 		}
+		return legal;
 	}
 	
 	protected abstract void move(int moves, Board board);
@@ -65,6 +70,5 @@ public abstract class Vehicle {
 	protected abstract boolean legalMove(int moves, Board board); 
 
 	/* Checks if the next square is clear */
-	protected abstract boolean clearRoad(int move, Board board);
-	
+	protected abstract boolean clearRoad(int move, Board board);	
 }

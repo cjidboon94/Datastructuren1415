@@ -1,22 +1,32 @@
 public class Puzzle2 implements Runnable {
-
+	/*
 	GUI gui;
 
 	public Puzzle2(GUI g) {
 		gui = g;
 	}
+*/
+	public static void main(String[] args){
+		if(args[0].toLowerCase().equals("player")){
+			RushHour RH = new RushHourPlayer(setup());
+			while(RH.play() == 1){
+				System.out.println("Restarting");
+				RH = new RushHourPlayer(setup());
+			}
+		} else if(args[0].toLowerCase().equals("ai")){
+			RushHour RH = new RushHourAI(setup());
+			while(RH.play() == 1){
+				System.out.println("Restarting");
+				RH = new RushHourAI(setup());
+			}
+		}
+		
+	}
 
 	public void run(){
-		begin();
+		//main();
 	}
 	
-	public void begin(){
-		RushHour RH = new RushHour(setup(),gui);
-		while(RH.play() == 1){
-			System.out.println("Restarting");
-			RH = new RushHour(setup(),gui);
-		}
-	}
 
 	public static Board setup() {	
 

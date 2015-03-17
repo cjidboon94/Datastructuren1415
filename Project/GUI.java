@@ -28,7 +28,7 @@ public class GUI extends JFrame {
 	GUI() {
 		g = this;
 		initGUI();
-		basePath = "C:\\Users\\tim\\Desktop\\Datastructuren1415\\Project\\carpics\\";
+		basePath = "~/Datastructures1415/Project/carpics/";
 		carcolors = new ArrayList<carColorCombination>();
 
 		JButton puzzle1, puzzle2;

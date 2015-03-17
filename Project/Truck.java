@@ -11,7 +11,7 @@ public class Truck extends Vehicle {
 
 	protected void move(int moves, Board board){
 		if(moves > 0){
-			board.board[y1][x1] = null;
+			board.board[y1][x1] = 0;
 			if(orientation == 0) {
 				x1++;
 				x2++;
@@ -21,9 +21,9 @@ public class Truck extends Vehicle {
 				y2++;
 				y3++;
 			}
-			board.board[y3][x3] = board.board[y2][x2];
+			board.board[y3][x3] = name;
 		} else {
-			board.board[y3][x3] = null;
+			board.board[y3][x3] = 0;
 			if(orientation == 0) {
 				x1--;
 				x2--;
@@ -33,7 +33,7 @@ public class Truck extends Vehicle {
 				y2--;
 				y3--;
 			}
-			board.board[y1][x1] = board.board[y2][x2];
+			board.board[y1][x1] = name;
 		}
 	}
 	protected boolean legalMove(int moves, Board board) {
@@ -62,13 +62,15 @@ public class Truck extends Vehicle {
 
 	protected boolean clearRoad(int move, Board board) {
 		if(orientation == 0) {
-			if((move > 0 && board.board[y1][(x3 + move)] == null) || (move < 0 && board.board[y1][(x1 + move)] == null)) {
+			if((move > 0 && board.board[y1][(x3 + move)] == 0) || 
+				(move < 0 && board.board[y1][(x1 + move)] == 0)) {
 				return true;
 			} else {
 				return false;
 			}
 		} else {
-			if((move > 0 && board.board[y3+move][x1] == null) || (move < 0 && board.board[(y1 + move)][x1] == null)) {
+			if((move > 0 && board.board[y3+move][x1] == 0) || 
+				(move < 0 && board.board[(y1 + move)][x1] == 0)) {
 				return true;
 			} else {
 				return false;

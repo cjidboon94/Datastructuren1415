@@ -72,13 +72,4 @@ public class AStar {
 
 	}
 }
-
-
-
-
-
-
-
-
-
 */
