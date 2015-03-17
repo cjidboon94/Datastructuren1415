@@ -22,10 +22,16 @@ public class Board {
 	}
 
 	public Vehicle getVehicle(String name){
-		if(name.equals("p")){
+		if(name.equals("1")){
 			return vehicles.get(0);
 		}
-		int index = Integer.parseInt(name, 16);
+		int index;
+		if((int)name.charAt(0) < 97){
+			index = name.charAt(0) - 'A' +1;
+		} else {
+			index = name.charAt(0) - 'A' - 8;
+		}
+		System.out.println(index);
 		return vehicles.get(index);
 	}
 

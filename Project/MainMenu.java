@@ -1,7 +1,7 @@
 public class MainMenu {
 
-	public void start(String[] args){
-		if (args.length > 2){
+	public static void start(String[] args){
+		/*if (args.length > 2){
 			System.out.println("Usage: MainMenu or MainMenu GUI");
 			System.exit(1);
 		}
@@ -13,12 +13,14 @@ public class MainMenu {
 				System.out.println("Usage: MainMenu or MainMenu GUI");
 				System.exit(1);
 			}
-		}
+		}*/
+
 		GUI g = new GUI();
+
 	}
 	
 	public static void main(String[] args){
-		new MainMenu().start(args);
+		start(args);
 	}
 	
 }
