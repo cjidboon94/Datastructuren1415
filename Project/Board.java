@@ -1,13 +1,24 @@
-//Implements the board properties
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: Board.java
+ * 
+ * Class description: This class keeps track of the vehicles and initializes the board.
+ * It also keeps track of the state of the game.
+ */
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class Board { 
 	private int size;
-	public Vehicle[][] board; //A board is represented by a 2-dimensional array
-	private ArrayList<Vehicle> vehicles; //Contains an arraylist of vehicles
+	/*A board is represented by a 2-dimensional array*/
+	public Vehicle[][] board; 
+	/*The list of of vehicles. For easy access*/
+	private ArrayList<Vehicle> vehicles; 
 
-	/* Creates an empty board */
+	/* Default constructor. Creates an empty board */
 	public Board(int size) {
 
 		this.size = size;
@@ -16,9 +27,8 @@ public class Board {
 		vehicles = new ArrayList<Vehicle>();
 	}
 	
+	/* Clears the board */
 	private void clearBoard() {
-	//Removes every vehicle object from the board (every square)
-
 		for(Vehicle[] row : board) {
 			for(Vehicle square : row) {
 					square = null;
@@ -26,15 +36,14 @@ public class Board {
 		}
 	}
 
+	/* Returns the requested vehicle.*/
 	public Vehicle getVehicle(String name) {
 		if(name.equals("1")){
 			return vehicles.get(0);
 		}
 		int index;
+		/* Does some ascii magic to compute the index of the vehicle */
 		if((int)name.charAt(0) < 97){
-		//Deals with cars with char names that differ from upper to
-		//lower case
-
 			index = name.charAt(0) - 'A' +1;
 		} else {
 			index = name.charAt(0) - 'A' - 5 ;
@@ -42,17 +51,18 @@ public class Board {
 		return vehicles.get(index);
 	}
 
+	/* Adds a vehicle to the arraylist */
 	public void addVehicle(int name, Vehicle vehicle) {
 		vehicles.add(name, vehicle);
 	}
 
+	/* Returns the size of the board */
 	public int getSize() {
-	//Return the board size
 		return size;
 	}
 
+	/* Returns the full arraylist of vehicles */
 	public ArrayList<Vehicle> getVehicles() {
-	//Return the arraylist of all vehicles on the board
 		return vehicles;
 	}
 }	

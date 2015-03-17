@@ -1,13 +1,28 @@
-//Implements the playable aspect of the game
-//Methods play(), won() and getBoard()
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: RushHour.java
+ * 
+ * Class description: This class runs the playable aspect of the game.
+ * Essentially has one loop where it handles the input and passes it on
+ * onto the relevant vehicle/class
+ */
 
-import java.util.*;
+
+
+
+import java.util.Scanner;
 
 public class RushHour {
 	
+	/* The board on which is played*/
 	private Board puzzle;
+	/* A reference to the gui */
 	private GUI g;
 	
+	/*Default constructor*/
 	public RushHour(Board puzzle, GUI gui) {
 		this.puzzle = puzzle;
 		g = gui;
@@ -15,6 +30,7 @@ public class RushHour {
 		g.drawBoard();
 	}
 	
+
 	public int play() {
 
 		int move = 0;
@@ -22,8 +38,8 @@ public class RushHour {
 		String previous = "";
 		String name;
 
-		//The main loop with which the game is played in the terminal starts here.
-		//This continues untill the game is won, or the reader detects a 'quit' command.
+		/*The main loop with which the game is played in the terminal starts here.
+		This continues untill the game is won, or the reader detects a 'quit' command.*/
 		while(!won()) {
 			printBoard(move);
 			g.drawBoard();
@@ -66,11 +82,12 @@ public class RushHour {
 	}
 
 	private boolean won() { 
-	//The goal car must reach the most right side of his starting lane. Position is always horizontal
+	/*The goal car must reach the most right side of its starting lane. Position is always horizontal*/
 		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1] != null && 
 					puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
 	}
 
+	/* Traverses the board and prints it out*/
 	private void printBoard(int move) {	
 		System.out.println("Move:" + move);
 		System.out.println();
@@ -91,5 +108,4 @@ public class RushHour {
 	public Board getBoard() {
 		return puzzle;
 	}
-	
 }

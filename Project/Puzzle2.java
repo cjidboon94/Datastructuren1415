@@ -1,5 +1,13 @@
-//Refer to Puzzle1.java for comments
-
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: Puzzle2.java
+ * 
+ * Class description: The second puzzle. Refer to Puzzle1 for more information on 
+ * the methods
+ */
 public class Puzzle2 implements Runnable {
 
 	GUI gui;
@@ -14,10 +22,7 @@ public class Puzzle2 implements Runnable {
 	
 	public void begin() {
 		RushHour RH = new RushHour(setup(),gui);
-		while(RH.play() == 1){
-			System.out.println("Restarting");
-			RH = new RushHour(setup(),gui);
-		}
+		RH.play();
 	}
 
 	public static Board setup() {	

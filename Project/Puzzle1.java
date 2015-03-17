@@ -1,12 +1,20 @@
-/*Creates every vehicle object for this puzzle
-Since every "Puzzle#" file is very similar, refer to this
-file for code comments.*/
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: Puzzle1.java
+ * 
+ * Class description: The first puzzle. Sets the game up and passes on control to
+ * RushHour
+ */
+
 
 public class Puzzle1 implements Runnable {
 	/*the GUI interface is ran in another thread than the
 	game that plays throught the terminal. Since we need
-	multithreading for this, this class implements runnable
-	and there is a public method called run.*/
+	multithreading for this, this class implements the runnable interface
+	*/
 
 	GUI gui;
 
@@ -18,29 +26,20 @@ public class Puzzle1 implements Runnable {
 		begin();
 	}
 	
-	//Initialize and RushHour object
+	/*Initializes the RushHour object and starts the actual game*/
 	public void begin() {
 		RushHour RH = new RushHour(setup(),gui);
-		while(RH.play() == 1){
-			System.out.println("Restarting");
-			RH = new RushHour(setup(),gui);
-		}
+		RH.play();
 	}
 
-	//Initialize the car and truck objects at the right board place
+	/*Initializes the board */
 	public static Board setup() {
-		//Do setup
-		Board puzzle = new Board(6); //Create board with a given size
-
-		//Create the car that needs to get out of the rush hour
-		//Car parameters: 	name, orientation(0=horizontal,1=vertical)
-		// 					the coordinates, and boolean isGoalCar
+		Board puzzle = new Board(6); 
 
 		puzzle.board[2][3] = new Car('1', 0, 2, 3, 2, 4, true);
-		puzzle.board[2][4] = puzzle.board[2][3]; //connect the two parts
+		puzzle.board[2][4] = puzzle.board[2][3]; 
 		puzzle.addVehicle(0, puzzle.board[2][3]);
 		
-		//Similarly to a car, except a truck occupies three spaces.
 		puzzle.board[0][2] = new Truck('A', 1, 0, 2, 1, 2, 2, 2);
 		puzzle.board[1][2] = puzzle.board[0][2];
 		puzzle.board[2][2] = puzzle.board[0][2];

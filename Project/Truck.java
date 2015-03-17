@@ -1,8 +1,15 @@
-//Subclass of Vehicle.java
-//Is able to move trucks over the board's coordinates
-
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: Truck.java
+ * 
+ * Class description: Subclass of Vehicle.
+ * It has one more x-y coordinate pair. Implements the abstract methods:
+ * move, legalMove and clearRoad
+ */
 public class Truck extends Vehicle {
-//In addition to a normal vehicle, the truck has on more coordinate
 
 	public int x3;
 	public int y3;
@@ -12,7 +19,7 @@ public class Truck extends Vehicle {
 		this.x3 = x3;
 		this.y3 = y3;
 	}
-
+	/* Moves the truck over the board */
 	protected void move(int moves, Board board) {
 		if(moves > 0){
 			board.board[y1][x1] = null;
@@ -40,8 +47,10 @@ public class Truck extends Vehicle {
 			board.board[y1][x1] = board.board[y2][x2];
 		}
 	}
+
+	/* Checks if move is legal*/
 	protected boolean legalMove(int moves, Board board) {
-		//Horizontal moves
+		/*Horizontal moves*/
 		if(orientation == 0) {
 			if(moves > 0 && (x3 + moves) < board.getSize()) {
 				return clearRoad(1, board);
@@ -51,7 +60,7 @@ public class Truck extends Vehicle {
 				return false;
 			}
 
-		//Vertical moves	
+		/*Vertical moves*/
 		} else {
 
 			if((moves > 0) && (y3 + moves) < board.getSize()) {
@@ -64,9 +73,9 @@ public class Truck extends Vehicle {
 		}
 	}
 
+	/*Checks if road is not blocked*/
 	protected boolean clearRoad(int move, Board board) {
-	//The check for blocks
-
+	
 		if(orientation == 0) {
 			if((move > 0 && board.board[y1][(x3 + move)] == null) || (move < 0 && board.board[y1][(x1 + move)] == null)) {
 				return true;

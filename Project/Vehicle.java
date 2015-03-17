@@ -1,10 +1,14 @@
-//Superclass of Car.java and Truck.java
-//Implements and retrieves properties of vehicles
-
-import java.util.ArrayList;
-
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: Vehicle.java
+ * 
+ * Class description: Abstract class that handles the pieces of the board.
+ * Consists of an orientation, a name and two x and y coordinates.
+ */
 public abstract class Vehicle {
-//Every vehicle has an orientation, name, and at least two coordinates	
 
 	protected final int orientation;
 	protected final char name;
@@ -13,7 +17,7 @@ public abstract class Vehicle {
 	public int y1;
 	public int y2;
 	
-	//Default constructor. Saves the position and the orientation of the vehicle 
+	/* Default constructor. Saves the position and the orientation of the vehicle */
 	public Vehicle (char name, int orientation, int y1, int x1, int y2, int x2) {
 		this.name = name;
 		this.orientation = orientation;
@@ -23,21 +27,21 @@ public abstract class Vehicle {
 		this.y2 = y2;
 	}
 
+	/*Return the vehicle's name*/
 	public char getName(){
-	//Return the vehicle's name
+
 		return name;
 	}
 
+	/*Return the vehicle's orientation, 0=horizontal, 1=vertical */
 	public int getOr() {
-	//Return the vehicle's orientation, 0=horizontal, 1=vertical
 		return orientation;
 	}
 
-	/* Entry method that performs all checks for a move. */
+	/* Entry method that performs all checks for a move and then performs the move. */
 	public void mainMove(int moves, Board board) {
-		//A check to see if vehicles don't collide with certain moves
 		boolean legal = true;
-		//Initiate the move to be legal, it will be turned false if the way is blocked
+		/* If moved right or down */
 		if(moves > 0) {
 			for(int i = moves; i > 0 && legal; i--) {
 				if(!legalMove(i, board)) {
@@ -51,6 +55,7 @@ public abstract class Vehicle {
 					move(moves, board);
 				}
 			}
+		/* If moved left or up */
 		} else if (moves < 0) {
 			for(int i = moves; i < 0 && legal; i++) {
 				if(!legalMove(i, board)){
@@ -68,6 +73,7 @@ public abstract class Vehicle {
 		}
 	}
 	
+	/* Moves the vehicle 'moves' amount of moves over the board */
 	protected abstract void move(int moves, Board board);
 
 	/* Checks if a move is legal 

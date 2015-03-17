@@ -1,29 +1,21 @@
-//This file is the main class that needs to be ran to execute the
-//program including the GUI.
+/*
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: MainMenu.java
+ * 
+ * Class description: Entry class. The GUI gets started up.
+ */
 
 public class MainMenu {
 
-	public static void start(String[] args) {
-		/*if (args.length > 2){
-			System.out.println("Usage: MainMenu or MainMenu GUI");
-			System.exit(1);
-		}
-		else if (args.length == 1){
-			if (args[0].equals("GUI")){
-				System.out.println("Starting GUI play mode");
-			}
-			else{
-				System.out.println("Usage: MainMenu or MainMenu GUI");
-				System.exit(1);
-			}
-		}*/
-
+	public static void start() {
 		GUI g = new GUI();
 
 	}
 	
 	public static void main(String[] args) {
-		start(args);
+		start();
 	}
-	
 }

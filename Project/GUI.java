@@ -1,7 +1,15 @@
 /*
-The GUI class implements the Graphic User Interface that visualizes the Rush Hour game
-from the terminal more beautifully. 
-*/
+ * Project - Datastructuren - RushHour
+ * Authors: Cornelis Boon - 10561145, Tim Groot - 10165673
+ * Emails: cornelis.boon@student.uva.nl, tim.groot@student.uva.nl
+ * Date: 17-03-2015
+ * File: GUI.java
+ * 
+ * Class description: Graphical User Interface such that the person
+ * has a more visual view of the board and the pieces.
+ * Is initialized by the mainmenu class and handles all the visual aspects
+ * of the game.
+ */
 
 import javax.swing.*;
 import java.awt.*;
