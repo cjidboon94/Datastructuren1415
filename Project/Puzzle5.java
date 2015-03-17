@@ -1,3 +1,5 @@
+//Refer to puzzle1.java for comments
+
 public class Puzzle5 implements Runnable {
 
 	GUI gui;

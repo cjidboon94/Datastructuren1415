@@ -1,6 +1,9 @@
+//This file is the main class that needs to be ran to execute the
+//program including the GUI.
+
 public class MainMenu {
 
-	public static void start(String[] args){
+	public static void start(String[] args) {
 		/*if (args.length > 2){
 			System.out.println("Usage: MainMenu or MainMenu GUI");
 			System.exit(1);
@@ -19,7 +22,7 @@ public class MainMenu {
 
 	}
 	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		start(args);
 	}
 	

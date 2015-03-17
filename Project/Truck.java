@@ -1,4 +1,8 @@
+//Subclass of Vehicle.java
+//Is able to move trucks over the board's coordinates
+
 public class Truck extends Vehicle {
+//In addition to a normal vehicle, the truck has on more coordinate
 
 	public int x3;
 	public int y3;
@@ -9,7 +13,7 @@ public class Truck extends Vehicle {
 		this.y3 = y3;
 	}
 
-	protected void move(int moves, Board board){
+	protected void move(int moves, Board board) {
 		if(moves > 0){
 			board.board[y1][x1] = null;
 			if(orientation == 0) {
@@ -37,7 +41,7 @@ public class Truck extends Vehicle {
 		}
 	}
 	protected boolean legalMove(int moves, Board board) {
-		/* Horizontal moves */
+		//Horizontal moves
 		if(orientation == 0) {
 			if(moves > 0 && (x3 + moves) < board.getSize()) {
 				return clearRoad(1, board);
@@ -47,7 +51,7 @@ public class Truck extends Vehicle {
 				return false;
 			}
 
-		/* Vertical moves */	
+		//Vertical moves	
 		} else {
 
 			if((moves > 0) && (y3 + moves) < board.getSize()) {
@@ -61,6 +65,8 @@ public class Truck extends Vehicle {
 	}
 
 	protected boolean clearRoad(int move, Board board) {
+	//The check for blocks
+
 		if(orientation == 0) {
 			if((move > 0 && board.board[y1][(x3 + move)] == null) || (move < 0 && board.board[y1][(x1 + move)] == null)) {
 				return true;

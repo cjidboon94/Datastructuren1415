@@ -1,3 +1,8 @@
+/*
+The GUI class implements the Graphic User Interface that visualizes the Rush Hour game
+from the terminal more beautifully. 
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -5,8 +10,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.awt.Font;
 
+
+//The main class, using swing's JFrame
 public class GUI extends JFrame {
 
+	//Initializes the ImageIcon variables
 	ImageIcon bluedown1, bluetop1, blueleft0, blueright0, 
 		limtop1, limmid1, limdown1, limleft0, limmid0, limright0,
 		beigetop1, beigedown1, beigeleft0, beigeright0,
@@ -16,11 +24,15 @@ public class GUI extends JFrame {
 		redtop1, reddown1, redleft0, redright0,
 		tealtop1, tealdown1, tealleft0, tealright0,
 		yellowtop1, yellowdown1, yellowleft0, yellowright0;
+
+	//The base path should be altered to the path that leads to the picture directory,
+	//when ran from another computer.
 	String basePath;
-	String[] picturearray = new String[7]; //seven other colours to choose from
+	String[] picturearray = new String[7]; //Seven other colours to choose from
 	ArrayList<carColorCombination> carcolors; 
 
-	String chosenPuzzle = "";
+
+	String chosenPuzzle = ""; // chosenpuzzle will later remember the chosen puzzle from the mid screen
 	JFrame frame;
 	JButton midscreen1, midscreen2;
 	Board b;
@@ -36,6 +48,7 @@ public class GUI extends JFrame {
 		
 		JLabel title;
 
+		//The initial graphic interface, the player is prompted to click on one of the puzzles
 		frame.setLayout(new GridLayout(6,1));
 		
 		title = new JLabel("Select a Puzzle!", SwingConstants.CENTER);
@@ -96,7 +109,7 @@ public class GUI extends JFrame {
 		frame.add(puzzle5);
 	}
 	
-	public void initGUI() {
+	public void initGUI() { //Initialize the size and operations of the frame
 		frame = new JFrame("Rush Hour");
 		//frame.setLocationRelativeTo(null);
 		frame.setSize(700,700);
@@ -107,6 +120,9 @@ public class GUI extends JFrame {
 	}
 
 	public void drawOptionsMenu(GUI g, JFrame frame, JLabel title) {
+		//This menu pops up after you've chosen a puzzle
+		//Gives the user the choice to either play, or use the solver
+
 		frame.setLayout(new GridLayout(3,1));
 		title = new JLabel("Do you wish to play, or watch the AI solve the puzzle?", SwingConstants.CENTER);
 		frame.add(title);
@@ -153,12 +169,16 @@ public class GUI extends JFrame {
 	}
 
 	public void setBoard(Board board) {
+	//Sets the board, given the puzzle size
+
 		b = board;
 		frame.setLayout(new GridLayout(b.getSize(), b.getSize()));
 		readPics();
 	}
 	
 	public void drawBoard() {
+		//Draws every vehicle on the board with their tag
+
 		frame.getContentPane().removeAll();
 
 		ArrayList<Vehicle> vehiclearray = b.getVehicles();
@@ -223,7 +243,7 @@ public class GUI extends JFrame {
 										//frame.add(new JButton(v.getName() + " bottom"));
 									}
 								}
-							} else { //object is car
+							} else { //object is a car
 								int color = -1;
 								for (int l = 0; l < carcolors.size(); l++) {
 									carColorCombination check = carcolors.get(l);
@@ -309,6 +329,8 @@ public class GUI extends JFrame {
 	}
 
 	private class carColorCombination {
+		//This class is needed to remember which random color which car has
+
 		char carName;
 		int color;
 
@@ -319,6 +341,8 @@ public class GUI extends JFrame {
 	}
 
 	public ImageIcon selectColor(String position, int color) {
+	//Binds the randomly generate number to a color
+
 		if (color == 0) {
 			if (position.equals("left0")) {
 				return beigeleft0;
@@ -413,6 +437,8 @@ public class GUI extends JFrame {
 	}
 
 	public void readPics() {
+	//PNG imports
+
 		bluedown1 = new ImageIcon(basePath + "bluedown1.png");
 		bluetop1 = new ImageIcon(basePath + "bluetop1.png");
 		blueleft0 = new ImageIcon(basePath + "blueleft0.png");
@@ -460,6 +486,7 @@ public class GUI extends JFrame {
 		limmid0 = new ImageIcon(basePath + "limmid0.png");
 		limright0 = new ImageIcon(basePath + "limright0.png");
 
+		//Scales the pictures, so they fit in the buttons
 		Image scaled = bluedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
 			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		bluedown1 = new ImageIcon(scaled);
