@@ -21,7 +21,7 @@ public class RushHour {
 			printBoard(move);
 			g.drawBoard();
 				try {
-					System.out.println("Which vehicle would you like to move? (Or type RESET to restart)");
+					System.out.println("Which vehicle would you like to move? (Or type RESET/QUIT to restart or quit)");
 					name = reader.next();
 					if(name.equalsIgnoreCase("RESET")) {
 						System.out.println("Which vehicle would you like to move?");
@@ -31,11 +31,11 @@ public class RushHour {
 					if(name.equalsIgnoreCase("reset") || name.equalsIgnoreCase("r")) {
 						reader.close();
 						return 1;
-					} else if(name.equals("0")){
-						System.out.println("There's no zeroth object");
-						continue;
+					/*}  else if(name.equals("0")){
+						System.out.println("There's no zero'th object");
+						continue; */
 					} else if(name.equalsIgnoreCase("quit") || name.equalsIgnoreCase("q")){
-						System.out.println("Bye");
+						System.out.println("Thank you for playing!");
 						reader.close();
 						System.exit(0);
 						return 0;
@@ -66,9 +66,8 @@ public class RushHour {
 	}
 
 	private boolean won(){ 
-		return ( 	puzzle.board[2][4] != null && puzzle.board[2][5] != null && 
-					puzzle.board[2][4].equals(puzzle.getVehicle("p")) &&
-					puzzle.board[2][5].equals(puzzle.getVehicle("p"))); 
+		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)][puzzle.getSize()-1] != null && 
+					puzzle.board[Math.round((float)puzzle.getSize()/2)][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
 	}
 
 	private void printBoard(int move){	

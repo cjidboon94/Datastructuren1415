@@ -20,8 +20,10 @@ public class GUI extends JFrame {
 	String[] picturearray = new String[7]; //seven other colours to choose from
 	ArrayList<carColorCombination> carcolors; 
 
-	//JPanel panel = new JPanel();
+	String chosenPuzzle = "";
+
 	JFrame frame;
+	JButton midscreen1, midscreen2;
 	Board b;
 	GUI g;
 
@@ -31,10 +33,11 @@ public class GUI extends JFrame {
 		basePath = "C:\\Users\\tim\\Desktop\\Datastructuren1415\\Project\\carpics\\";
 		carcolors = new ArrayList<carColorCombination>();
 
-		JButton puzzle1, puzzle2;
+		JButton puzzle1, puzzle2, puzzle3, puzzle4, puzzle5;
+		
 		JLabel title;
 
-		frame.setLayout(new GridLayout(3,1));
+		frame.setLayout(new GridLayout(6,1));
 		
 		title = new JLabel("Select a Puzzle!", SwingConstants.CENTER);
 		frame.add(title);
@@ -42,7 +45,10 @@ public class GUI extends JFrame {
 		puzzle1 = new JButton("Play Puzzle 1!");
 		puzzle1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Thread(new Puzzle1(g)).start();
+				chosenPuzzle = "Puzzle1";
+				frame.getContentPane().removeAll();
+				drawOptionsMenu(g, frame, title);
+				//new Thread(new Puzzle1(g)).start();
 			}
 		});
 		frame.add(puzzle1);
@@ -50,20 +56,101 @@ public class GUI extends JFrame {
 		puzzle2 = new JButton("Play Puzzle 2!");
 		puzzle2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Thread(new Puzzle2(g)).start();
+				chosenPuzzle = "Puzzle2";
+				frame.getContentPane().removeAll();
+				drawOptionsMenu(g, frame, title);
+				//new Thread(new Puzzle2(g)).start();
 			}
 		});
 		frame.add(puzzle2);	
+
+		puzzle3 = new JButton("Play Puzzle 3!");
+		puzzle3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chosenPuzzle = "Puzzle3";
+				frame.getContentPane().removeAll();
+				drawOptionsMenu(g, frame, title);
+				//new Thread(new Puzzle3(g)).start();
+			}
+		});
+		frame.add(puzzle3);
+
+		puzzle4 = new JButton("Play Puzzle 4!");
+		puzzle4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chosenPuzzle = "Puzzle4";
+				frame.getContentPane().removeAll();
+				drawOptionsMenu(g, frame, title);
+				//new Thread(new Puzzle4(g)).start();
+			}
+		});
+		frame.add(puzzle4);
+
+		puzzle5 = new JButton("Play Puzzle 5!");
+		puzzle5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chosenPuzzle = "Puzzle5";
+				frame.getContentPane().removeAll();
+				drawOptionsMenu(g, frame, title);
+			}
+		});
+		frame.add(puzzle5);
 	}
 	
 	public void initGUI() {
 		frame = new JFrame("Rush Hour");
 		//frame.setLocationRelativeTo(null);
-		frame.setSize(650,650);
+		frame.setSize(700,700);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+	}
+
+	public void drawOptionsMenu(GUI g, JFrame frame, JLabel title) {
+		frame.setLayout(new GridLayout(3,1));
+		title = new JLabel("Do you wish to play, or watch the AI solve the puzzle?", SwingConstants.CENTER);
+		frame.add(title);
+
+		midscreen1 = new JButton("I'll play!");
+		midscreen1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chosenPuzzle == "Puzzle1") {
+					frame.getContentPane().removeAll();
+					new Thread(new Puzzle1(g)).start();
+				}
+				if (chosenPuzzle == "Puzzle2") {
+					frame.getContentPane().removeAll();
+					new Thread(new Puzzle2(g)).start();
+				}
+				if (chosenPuzzle == "Puzzle3") {
+					frame.getContentPane().removeAll();
+					new Thread(new Puzzle3(g)).start();
+				}
+				if (chosenPuzzle == "Puzzle4") {
+					frame.getContentPane().removeAll();
+					new Thread(new Puzzle4(g)).start();
+				} 
+				if (chosenPuzzle == "Puzzle5") {
+					frame.getContentPane().removeAll();
+					new Thread(new Puzzle5(g)).start();
+				}
+			}
+		});
+		frame.add(midscreen1);
+
+		midscreen2 = new JButton("I think I'll let the AI solve this one for me...");
+		midscreen2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Launch AI Solver");
+			}
+		});
+		frame.add(midscreen2);	
+
+		frame.revalidate();
+		frame.repaint();
+		frame.setVisible(true);
+
 	}
 
 	public void setBoard(Board board) {
@@ -81,16 +168,15 @@ public class GUI extends JFrame {
 				if(b.board[i][j] == null) {
 					frame.add(new JButton());
 				} else {
-					for(int k = 0; k < vehiclearray.size(); k++) {
-						Vehicle v  = vehiclearray.get(k);
+					for(Vehicle v : vehiclearray) {
 						if(v.getName() == b.board[i][j].getName()){
 							if (v instanceof Truck) { //object is a truck
-								if (v.orientation == 0) {
+								if (v.getOr() == 0) {
 									if (v.x1 == j){
 										JButton left = new JButton(v.getName() + "", limleft0);
 										left.setHorizontalTextPosition(JButton.CENTER);
 										left.setVerticalTextPosition(JButton.CENTER);
-										left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										left.setForeground(Color.WHITE);
 										frame.add(left);
 										//frame.add(new JButton(v.getName() + " left"));
@@ -98,7 +184,7 @@ public class GUI extends JFrame {
 										JButton mid = new JButton(v.getName() + "", limmid0);
 										mid.setHorizontalTextPosition(JButton.CENTER);
 										mid.setVerticalTextPosition(JButton.CENTER);
-										mid.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										mid.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										mid.setForeground(Color.WHITE);
 										frame.add(mid);
 										//frame.add(new JButton(v.getName() + " middle"));
@@ -106,7 +192,7 @@ public class GUI extends JFrame {
 										JButton right = new JButton(v.getName() + "", limright0);
 										right.setHorizontalTextPosition(JButton.CENTER);
 										right.setVerticalTextPosition(JButton.CENTER);
-										right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										right.setForeground(Color.WHITE);
 										frame.add(right);
 										//frame.add(new JButton(v.getName() + " right"));
@@ -116,7 +202,7 @@ public class GUI extends JFrame {
 										JButton top = new JButton(v.getName() + "", limtop1);
 										top.setHorizontalTextPosition(JButton.CENTER);
 										top.setVerticalTextPosition(JButton.CENTER);
-										top.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										top.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										top.setForeground(Color.WHITE);
 										frame.add(top);
 										//frame.add(new JButton(v.getName() + " top"));
@@ -124,7 +210,7 @@ public class GUI extends JFrame {
 										JButton mid = new JButton(v.getName() + "", limmid1);
 										mid.setHorizontalTextPosition(JButton.CENTER);
 										mid.setVerticalTextPosition(JButton.CENTER);
-										mid.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										mid.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										mid.setForeground(Color.WHITE);
 										frame.add(mid);
 										//frame.add(new JButton(v.getName() + " middle"));
@@ -132,7 +218,7 @@ public class GUI extends JFrame {
 										JButton down = new JButton(v.getName() + "", limdown1);
 										down.setHorizontalTextPosition(JButton.CENTER);
 										down.setVerticalTextPosition(JButton.CENTER);
-										down.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										down.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										down.setForeground(Color.WHITE);
 										frame.add(down);
 										//frame.add(new JButton(v.getName() + " bottom"));
@@ -153,12 +239,12 @@ public class GUI extends JFrame {
 									carcolors.add(c);
 									color = randomnumber;
 								}
-								if (v.getName() == 'p') { //object is goal car
+								if (v.getName() == '1') { //object is goal car
 									if (v.x1 == j) {
 										JButton left = new JButton(v.getName() + "", redleft0);
 										left.setHorizontalTextPosition(JButton.CENTER);
 										left.setVerticalTextPosition(JButton.CENTER);
-										left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										left.setForeground(Color.WHITE);
 										frame.add(left);
 										//frame.add(new JButton(v.getName() + " left"));
@@ -167,18 +253,18 @@ public class GUI extends JFrame {
 										JButton right = new JButton(v.getName() + "", redright0);
 										right.setHorizontalTextPosition(JButton.CENTER);
 										right.setVerticalTextPosition(JButton.CENTER);
-										right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+										right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 										right.setForeground(Color.WHITE);
 										frame.add(right);
 										//frame.add(new JButton(v.getName() + " right"));
 									}
 								} else { //object is another car
-									if (v.orientation == 0) {
+									if (v.getOr() == 0) {
 										if (v.x1 == j) {
 											JButton left = new JButton(v.getName() + "", selectColor("left0", color));
 											left.setHorizontalTextPosition(JButton.CENTER);
 											left.setVerticalTextPosition(JButton.CENTER);
-											left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+											left.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 											left.setForeground(Color.WHITE);
 											frame.add(left);
 											//frame.add(new JButton(v.getName() + " left"));
@@ -187,7 +273,7 @@ public class GUI extends JFrame {
 											JButton right = new JButton(v.getName() + "", selectColor("right0", color));
 											right.setHorizontalTextPosition(JButton.CENTER);
 											right.setVerticalTextPosition(JButton.CENTER);
-											right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+											right.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 											right.setForeground(Color.WHITE);
 											frame.add(right);
 											//frame.add(new JButton(v.getName() + " right"));
@@ -197,7 +283,7 @@ public class GUI extends JFrame {
 											JButton top = new JButton(v.getName() + "", selectColor("top1", color));
 											top.setHorizontalTextPosition(JButton.CENTER);
 											top.setVerticalTextPosition(JButton.CENTER);
-											top.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+											top.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 											top.setForeground(Color.WHITE);
 											frame.add(top);
 											//frame.add(new JButton(v.getName() + " top"));
@@ -205,7 +291,7 @@ public class GUI extends JFrame {
 											JButton down = new JButton(v.getName() + "", selectColor("down1", color));
 											down.setHorizontalTextPosition(JButton.CENTER);
 											down.setVerticalTextPosition(JButton.CENTER);
-											down.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/10));
+											down.setFont(new Font("Arial", Font.PLAIN, frame.getHeight()/b.getSize()/4));
 											down.setForeground(Color.WHITE);
 											frame.add(down);
 											//frame.add(new JButton(v.getName() + " bottom"));
@@ -375,127 +461,127 @@ public class GUI extends JFrame {
 		limmid0 = new ImageIcon(basePath + "limmid0.png");
 		limright0 = new ImageIcon(basePath + "limright0.png");
 
-		Image scaled = bluedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		Image scaled = bluedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		bluedown1 = new ImageIcon(scaled);
-		scaled = bluetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = bluetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		bluetop1 = new ImageIcon(scaled);
-		scaled = blueleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = blueleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		blueleft0 = new ImageIcon(scaled);
-		scaled = blueright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = blueright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		blueright0 = new ImageIcon(scaled);
 
-		scaled = beigedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = beigedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		beigedown1 = new ImageIcon(scaled);
-		scaled = beigetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = beigetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		beigetop1 = new ImageIcon(scaled);
-		scaled = beigeleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = beigeleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		beigeleft0 = new ImageIcon(scaled);
-		scaled = beigeright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = beigeright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		beigeright0 = new ImageIcon(scaled);
 
-		scaled = greendown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = greendown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		greendown1 = new ImageIcon(scaled);
-		scaled = greentop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = greentop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		greentop1 = new ImageIcon(scaled);
-		scaled = greenleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = greenleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		greenleft0 = new ImageIcon(scaled);
-		scaled = greenright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = greenright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		greenright0 = new ImageIcon(scaled);
 
-		scaled = orangedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = orangedown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		orangedown1 = new ImageIcon(scaled);
-		scaled = orangetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = orangetop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		orangetop1 = new ImageIcon(scaled);
-		scaled = orangeleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = orangeleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		orangeleft0 = new ImageIcon(scaled);
-		scaled = orangeright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = orangeright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		orangeright0 = new ImageIcon(scaled);
 
-		scaled = purpledown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = purpledown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		purpledown1 = new ImageIcon(scaled);
-		scaled = purpletop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = purpletop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		purpletop1 = new ImageIcon(scaled);
-		scaled = purpleleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = purpleleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		purpleleft0 = new ImageIcon(scaled);
-		scaled = purpleright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = purpleright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		purpleright0 = new ImageIcon(scaled);
 
-		scaled = reddown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = reddown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		reddown1 = new ImageIcon(scaled);
-		scaled = redtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = redtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		redtop1 = new ImageIcon(scaled);
-		scaled = redleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = redleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		redleft0 = new ImageIcon(scaled);
-		scaled = redright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = redright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		redright0 = new ImageIcon(scaled);
 
-		scaled = tealdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = tealdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		tealdown1 = new ImageIcon(scaled);
-		scaled = tealtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = tealtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		tealtop1 = new ImageIcon(scaled);
-		scaled = tealleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = tealleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		tealleft0 = new ImageIcon(scaled);
-		scaled = tealright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = tealright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		tealright0 = new ImageIcon(scaled);
 
-		scaled = yellowdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = yellowdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		yellowdown1 = new ImageIcon(scaled);
-		scaled = yellowtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = yellowtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		yellowtop1 = new ImageIcon(scaled);
-		scaled = yellowleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = yellowleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		yellowleft0 = new ImageIcon(scaled);
-		scaled = yellowright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = yellowright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		yellowright0 = new ImageIcon(scaled);
 
-		scaled = limtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limtop1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limtop1 = new ImageIcon(scaled);
-		scaled = limmid1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limmid1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limmid1 = new ImageIcon(scaled);
-		scaled = limdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limdown1.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limdown1 = new ImageIcon(scaled);
-		scaled = limleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limleft0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limleft0 = new ImageIcon(scaled);
-		scaled = limmid0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limmid0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limmid0 = new ImageIcon(scaled);
-		scaled = limright0.getImage().getScaledInstance(frame.getHeight()/b.getSize(), 
-			frame.getHeight()/b.getSize(), java.awt.Image.SCALE_SMOOTH);
+		scaled = limright0.getImage().getScaledInstance(frame.getHeight()/b.getSize()-5, 
+			frame.getHeight()/b.getSize()-5, java.awt.Image.SCALE_SMOOTH);
 		limright0 = new ImageIcon(scaled);
 
 		picturearray[0] = "beige";

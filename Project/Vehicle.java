@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public abstract class Vehicle {
 	
-	public int orientation;
-	public final char name;
+	protected final int orientation;
+	protected final char name;
 	public int x1;
 	public int x2;
 	public int y1;
@@ -21,6 +21,10 @@ public abstract class Vehicle {
 
 	public char getName(){
 		return name;
+	}
+
+	public int getOr() {
+		return orientation;
 	}
 
 	/* Entry method that performs all checks for a move. */
