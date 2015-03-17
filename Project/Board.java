@@ -31,7 +31,6 @@ public class Board {
 		} else {
 			index = name.charAt(0) - 'A' - 6 ;
 		}
-		System.out.println(index);
 		return vehicles.get(index);
 	}
 

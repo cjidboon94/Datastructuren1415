@@ -160,6 +160,64 @@ public class Puzzle5 implements Runnable {
 		puzzle.board[8][1] = puzzle.board[8][0];
 		puzzle.addVehicle(31, puzzle.board[8][0]);
 
+		puzzle.board[8][2] = new Car('g', 1, 8, 2, 9, 2);
+		puzzle.board[9][2] = puzzle.board[8][2];
+		puzzle.addVehicle(32, puzzle.board[8][2]);
+
+		puzzle.board[8][3] = new Truck('h', 0, 8, 3, 8, 4, 8, 5);
+		puzzle.board[8][4] = puzzle.board[8][3];
+		puzzle.board[8][5] = puzzle.board[8][3];
+		puzzle.addVehicle(33, puzzle.board[8][3]);
+
+		puzzle.board[8][7] = new Truck('i', 0, 8, 7, 8, 8, 8, 9);
+		puzzle.board[8][8] = puzzle.board[8][7];
+		puzzle.board[8][9] = puzzle.board[8][7];
+		puzzle.addVehicle(34, puzzle.board[8][7]);
+
+		puzzle.board[8][11] = new Car('j', 1, 8, 11, 9, 11);
+		puzzle.board[9][11] = puzzle.board[8][11];
+		puzzle.addVehicle(35, puzzle.board[8][11]);
+
+		puzzle.board[9][3] = new Truck('k', 0, 9, 3, 9, 4, 9, 5);
+		puzzle.board[9][4] = puzzle.board[9][3];
+		puzzle.board[9][5] = puzzle.board[9][3];
+		puzzle.addVehicle(36, puzzle.board[9][3]);
+
+		puzzle.board[9][6] = new Truck('l', 1, 9, 6, 10, 6, 11, 6);
+		puzzle.board[10][6] = puzzle.board[9][6];
+		puzzle.board[11][6] = puzzle.board[9][6];
+		puzzle.addVehicle(37, puzzle.board[9][6]);
+
+		puzzle.board[9][8] = new Car('m', 0, 9, 8, 9, 9);
+		puzzle.board[9][9] = puzzle.board[9][8];
+		puzzle.addVehicle(38, puzzle.board[9][8]);
+
+		puzzle.board[9][10] = new Truck('n', 1, 9, 10, 10, 10, 11, 10);
+		puzzle.board[10][10] = puzzle.board[9][10];
+		puzzle.board[11][10] = puzzle.board[9][10];
+		puzzle.addVehicle(39, puzzle.board[9][10]);
+
+		puzzle.board[10][9] = new Car('o', 1, 10, 9, 11, 9);
+		puzzle.board[11][9] = puzzle.board[10][9];
+		puzzle.addVehicle(40, puzzle.board[10][9]);
+
+		puzzle.board[10][11] = new Car('p', 1, 10, 11, 11, 11);
+		puzzle.board[11][11] = puzzle.board[10][11];
+		puzzle.addVehicle(41, puzzle.board[10][11]);
+
+		puzzle.board[11][1] = new Car('q', 0, 11, 1, 11, 2);
+		puzzle.board[11][2] = puzzle.board[11][1];
+		puzzle.addVehicle(42, puzzle.board[11][1]);
+
+		puzzle.board[11][3] = new Truck('r', 0, 11, 3, 11, 4, 11, 5);
+		puzzle.board[10][4] = puzzle.board[11][3];
+		puzzle.board[11][5] = puzzle.board[11][3];
+		puzzle.addVehicle(43, puzzle.board[11][3]);
+
+		puzzle.board[11][7] = new Car('s', 0, 11, 7, 11, 8);
+		puzzle.board[11][8] = puzzle.board[11][7];
+		puzzle.addVehicle(44, puzzle.board[11][7]);
+
 		return puzzle;
 	}
 	

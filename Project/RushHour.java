@@ -28,13 +28,13 @@ public class RushHour {
 						System.out.println("Type Reset/R to restart and Quit/Q");
 						name = reader.next().toLowerCase();
 					}
-					if(name.equalsIgnoreCase("reset") || name.equalsIgnoreCase("r")) {
+					if(name.equalsIgnoreCase("reset")) {
 						reader.close();
 						return 1;
 					/*}  else if(name.equals("0")){
 						System.out.println("There's no zero'th object");
 						continue; */
-					} else if(name.equalsIgnoreCase("quit") || name.equalsIgnoreCase("q")){
+					} else if(name.equalsIgnoreCase("quit")) {
 						System.out.println("Thank you for playing!");
 						reader.close();
 						System.exit(0);
@@ -66,7 +66,6 @@ public class RushHour {
 	}
 
 	private boolean won(){ 
-		System.out.println(Math.round((float)puzzle.getSize()/2)-1);
 		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1] != null && 
 					puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
 	}

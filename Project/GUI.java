@@ -21,7 +21,6 @@ public class GUI extends JFrame {
 	ArrayList<carColorCombination> carcolors; 
 
 	String chosenPuzzle = "";
-
 	JFrame frame;
 	JButton midscreen1, midscreen2;
 	Board b;
