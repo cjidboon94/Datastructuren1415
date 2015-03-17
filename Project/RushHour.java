@@ -21,19 +21,11 @@ public class RushHour {
 			printBoard(move);
 			g.drawBoard();
 				try {
-					System.out.println("Which vehicle would you like to move? (Or type RESET/QUIT to restart or quit)");
+					System.out.println("Which vehicle would you like to move? (Or type QUIT to quit)");
 					name = reader.next();
-					if(name.equalsIgnoreCase("RESET")) {
-						System.out.println("Which vehicle would you like to move?");
-						System.out.println("Type Reset/R to restart and Quit/Q");
-						name = reader.next().toLowerCase();
-					}
-					if(name.equalsIgnoreCase("reset")) {
-						reader.close();
-						return 1;
-					/*}  else if(name.equals("0")){
+					if(name.equals("0")){
 						System.out.println("There's no zero'th object");
-						continue; */
+						continue; 
 					} else if(name.equalsIgnoreCase("quit")) {
 						System.out.println("Thank you for playing!");
 						reader.close();
