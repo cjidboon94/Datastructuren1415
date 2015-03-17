@@ -1,7 +1,11 @@
+//Superclass of Car.java and Truck.java
+//Implements and retrieves properties of vehicles
+
 import java.util.ArrayList;
 
 public abstract class Vehicle {
-	
+//Every vehicle has an orientation, name, and at least two coordinates	
+
 	protected final int orientation;
 	protected final char name;
 	public int x1;
@@ -9,8 +13,8 @@ public abstract class Vehicle {
 	public int y1;
 	public int y2;
 	
-	/* Default constructor. Saves the position and the orientation of the vehicle */
-	public Vehicle (char name, int orientation, int y1, int x1, int y2, int x2){
+	//Default constructor. Saves the position and the orientation of the vehicle 
+	public Vehicle (char name, int orientation, int y1, int x1, int y2, int x2) {
 		this.name = name;
 		this.orientation = orientation;
 		this.x1 = x1;
@@ -20,16 +24,20 @@ public abstract class Vehicle {
 	}
 
 	public char getName(){
+	//Return the vehicle's name
 		return name;
 	}
 
 	public int getOr() {
+	//Return the vehicle's orientation, 0=horizontal, 1=vertical
 		return orientation;
 	}
 
 	/* Entry method that performs all checks for a move. */
 	public void mainMove(int moves, Board board) {
+		//A check to see if vehicles don't collide with certain moves
 		boolean legal = true;
+		//Initiate the move to be legal, it will be turned false if the way is blocked
 		if(moves > 0) {
 			for(int i = moves; i > 0 && legal; i--) {
 				if(!legalMove(i, board)) {

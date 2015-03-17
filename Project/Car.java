@@ -1,3 +1,7 @@
+//Subclass of Vehicle.java
+//Can move and check if a move can be done, like Truck.java
+//In addition, a car could be the goal car, which needs to be checked
+
 public class Car extends Vehicle {
 
 	private boolean player;
@@ -12,6 +16,7 @@ public class Car extends Vehicle {
 	}
 
 	public boolean isPlayer(){
+	//Is the current car the goal car?
 		return player;
 	}
 
@@ -40,7 +45,7 @@ public class Car extends Vehicle {
 
 	}
 	protected boolean legalMove(int moves, Board board) {
-		/* Horizontal moves */
+		// Horizontal moves
 		if(orientation == 0) {
 			if(moves > 0 && (x2 + moves) < board.getSize()) {
 				return clearRoad(1, board);
@@ -50,9 +55,8 @@ public class Car extends Vehicle {
 				return false;
 			}
 
-		/* Vertical moves */	
+		//Vertical moves
 		} else {
-
 			if((moves > 0) && (y2 + moves) < board.getSize()) {
 				return clearRoad(1, board);
 			}else if (moves < 0 && (y1 + moves) >= 0) {
@@ -64,6 +68,8 @@ public class Car extends Vehicle {
 	}
 
 	protected boolean clearRoad(int move, Board board) {
+	//Checks if a move could be done, based on whether or not that to be moved spot is empty, null
+
 		if(orientation == 0) {
 			if((move > 0 && board.board[y1][(x2 + move)] == null) || (move < 0 && board.board[y1][(x1 + move)] == null)) {
 				return true;

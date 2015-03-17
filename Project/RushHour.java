@@ -1,3 +1,6 @@
+//Implements the playable aspect of the game
+//Methods play(), won() and getBoard()
+
 import java.util.*;
 
 public class RushHour {
@@ -5,19 +8,23 @@ public class RushHour {
 	private Board puzzle;
 	private GUI g;
 	
-	public RushHour(Board puzzle, GUI gui){
+	public RushHour(Board puzzle, GUI gui) {
 		this.puzzle = puzzle;
 		g = gui;
 		g.setBoard(puzzle);
 		g.drawBoard();
 	}
 	
-	public int play(){
+	public int play() {
+
 		int move = 0;
 		Scanner reader = new Scanner(System.in);
 		String previous = "";
 		String name;
-		while(!won()){
+
+		//The main loop with which the game is played in the terminal starts here.
+		//This continues untill the game is won, or the reader detects a 'quit' command.
+		while(!won()) {
 			printBoard(move);
 			g.drawBoard();
 				try {
@@ -31,9 +38,6 @@ public class RushHour {
 					if(name.equalsIgnoreCase("reset")) {
 						reader.close();
 						return 1;
-					/*}  else if(name.equals("0")){
-						System.out.println("There's no zero'th object");
-						continue; */
 					} else if(name.equalsIgnoreCase("quit")) {
 						System.out.println("Thank you for playing!");
 						reader.close();
@@ -53,7 +57,7 @@ public class RushHour {
 					System.out.println("Incorrect input");
 					continue;
 				}
-			if(!previous.equals(name)){
+			if(!previous.equals(name)) {
 				previous = name;
 				move++;
 			}
@@ -65,12 +69,13 @@ public class RushHour {
 		return 0;
 	}
 
-	private boolean won(){ 
+	private boolean won() { 
+	//The goal car must reach the most right side of his starting lane. Position is always horizontal
 		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1] != null && 
 					puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
 	}
 
-	private void printBoard(int move){	
+	private void printBoard(int move) {	
 		System.out.println("Move:" + move);
 		System.out.println();
 	    for(int i = 0; i < puzzle.getSize(); i++) {
@@ -87,7 +92,7 @@ public class RushHour {
 	  	System.out.println("");
 	}
 	
-	public Board getBoard(){
+	public Board getBoard() {
 		return puzzle;
 	}
 	
