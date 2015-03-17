@@ -29,7 +29,7 @@ public class Board {
 		if((int)name.charAt(0) < 97){
 			index = name.charAt(0) - 'A' +1;
 		} else {
-			index = name.charAt(0) - 'A' - 6 ;
+			index = name.charAt(0) - 'A' - 5 ;
 		}
 		return vehicles.get(index);
 	}
