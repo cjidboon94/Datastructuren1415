@@ -66,8 +66,9 @@ public class RushHour {
 	}
 
 	private boolean won(){ 
-		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)][puzzle.getSize()-1] != null && 
-					puzzle.board[Math.round((float)puzzle.getSize()/2)][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
+		System.out.println(Math.round((float)puzzle.getSize()/2)-1);
+		return ( 	puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1] != null && 
+					puzzle.board[Math.round((float)puzzle.getSize()/2)-1][puzzle.getSize()-1].equals(puzzle.getVehicle("1"))); 
 	}
 
 	private void printBoard(int move){	

@@ -135,10 +135,10 @@ public class Puzzle5 implements Runnable {
 		puzzle.board[7][7] = puzzle.board[6][7];
 		puzzle.addVehicle(25, puzzle.board[6][7]);
 
-		puzzle.board[6][9] = new Car('2', 1, 6, 9, 7, 9);
+		puzzle.board[6][9] = new Car('a', 1, 6, 9, 7, 9);
 		puzzle.board[7][9] = puzzle.board[6][9];
 		puzzle.addVehicle(26, puzzle.board[6][9]);
-/*
+
 		puzzle.board[6][10] = new Car('b', 0, 6, 10, 6, 11);
 		puzzle.board[6][11] = puzzle.board[6][10];
 		puzzle.addVehicle(27, puzzle.board[6][10]);
@@ -156,9 +156,9 @@ public class Puzzle5 implements Runnable {
 		puzzle.board[7][11] = puzzle.board[7][10];
 		puzzle.addVehicle(30, puzzle.board[7][10]);
 
-		puzzle.board[8][0] = new Car('e', 0, 8, 0, 8, 1);
+		puzzle.board[8][0] = new Car('f', 0, 8, 0, 8, 1);
 		puzzle.board[8][1] = puzzle.board[8][0];
-		puzzle.addVehicle(31, puzzle.board[8][0]);*/
+		puzzle.addVehicle(31, puzzle.board[8][0]);
 
 		return puzzle;
 	}
