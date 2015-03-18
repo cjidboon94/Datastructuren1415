@@ -1,100 +1,58 @@
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.Comparator;
+import java.util.Collections;
+import java.util.Arrays;
 
-public class RushHourAI extends RushHour{
+public class RushHourAI {
+	BoardNode puzzle;
 	
-
-	private PriorityQueue<Node> frontier;
-
-	private class Node {
-		char[][] state;
-		int cost;
-		char lastmoved;
-
-		Node(char[][] state, int cost, char lastmoved){
-			this.state = state;
-			this.cost = cost;
-			this.lastmoved = lastmoved;
-		}
-	}
-
-
-	public RushHourAI(Board puzzle){
-		super(puzzle);
-		visited = new ArrayList<Node>();
-		frontier = new PriorityQueue<Node>(10, new Comparator<Node>(){
-			public int compare(Node first, Node second){
-				return first.cost - second.cost;
-			}
-		});
-		frontier.offer(new Node(puzzle.board, 0, 0));
+	public RushHourAI(BoardNode puzzle){
+		this.puzzle = puzzle;
 	}
 
 	public int play(){
-		ArrayList<char[][]> solution = solver();
-		for(char[][] state : solution){
-			for(int i = 0; i < puzzle.getSize(); i++){
-				for(int j = 0; j < puzzle.getSize(); j ++){
-					if(puzzle.board[i][j] == 0){
-						System.out.printf("0");
-					} else {
-						System.out.printf(""+puzzle.board[i][j]);
-					}
-				}
-				System.out.println();
-			}
-			System.out.println();
+		ArrayList<BoardNode> solution = solver();
+		System.out.println("And this is the best path:");
+		for(BoardNode state : solution){
+			BoardNode.printBoard(state.getBoard());
 		}
 		System.out.println("And That's all folks!");
 		return 0;
 	}
 
-	private ArrayList<char[][]> solver(){
-		ArrayList<char[][]> solution = null;
-		solution = getNextStates(solution);
-		frontier.clear();
-		visited.clear();
-		System.out.pritnln("Solved in " + solution.size() + " steps.");
-		return solution; 
+	private ArrayList<BoardNode> solver(){
+		ArrayList<BoardNode> solution = search();
+		System.out.println("Solved in " + solution.size() + " steps.");
+		Collections.reverse(solution);
+		return  solution;
 	}
 
-	private  getNextStates(ArrayList<char[][]> path) {
-		/* Get the next best move */
-		Node next = frontier.peek();
-		/* If the solution is found, return */;
-		if(won(next.state)){
-			return path;
-		} else {
-			if(path == null) {
-				path = new ArrayList<char[][]>();
-			} 
-			path.add(next.state);
-			Board nextboard = next.state;
-			Board next1 = new Board(nextboard);
-			Board next2 = new Board(nextboard);
-			for(Vehicle vehic : next.getVehicles()){
-				if(mainMove(-1, next1, vehic.getName())){
-					addState(next1, next, vehic.getName());
-				}
-				if(mainMove(1, next2, vehic.getName())){
-					addState(next2, next, vehic.getName());
-				}
-				next1 = new Board(nextboard);
-				next2 = new Board(nextboard);
+	private ArrayList<BoardNode> search(){
+		System.out.println("Finding the best route");
+		ArrayList<BoardNode> solution = new ArrayList<BoardNode>();
+		ArrayList<char[][]> visited = new ArrayList<char[][]>();
+		PriorityQueue<BoardNode> frontier = new PriorityQueue<BoardNode>(10, new Comparator<BoardNode>(){
+			public int compare(BoardNode first, BoardNode second){
+				return first.getCost() - second.getCost();
 			}
-
-			visisted.add(frontier.poll());
-			return getNextStates(path);
+		});
+		frontier.offer(puzzle);
+		visited.add(puzzle.getBoard());
+		int expansion = 0;
+		frontier.peek().printBoard(frontier.peek().getBoard());
+		while(!won(frontier.peek().getBoard())) {
+			System.out.println("We have expanded "+expansion+" times.");
+			BoardNode.nextStates(frontier.poll(), frontier, visited);
+			expansion++;
 		}
+		BoardNode end = frontier.poll();
+		while(end.getPrevious() != null){
+			solution.add(end);
+		}
+		return solution;
 	}
-
-	private void addState(Board state, Node previous, char vehic){
-		
-		if(next.lastmoved == vehic.getName()){
-			frontier.offer(new Node(state, previous.cost, previous.lastmoved));
-		} else{
-			frontier.offer(new Node(state, previous.cost+1, vehic.getName()));
-		}
+	protected boolean won(char[][] board){ 
+		return ( 	board[Math.round((float)board.length/2)-1][board.length-1] == '1'); 
 	}
 }
